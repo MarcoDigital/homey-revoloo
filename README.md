@@ -132,8 +132,8 @@ app.js                  App: NOTTY session, shared pets cache, Flow cards, cat m
 app.json                Manifest: capabilities, drivers, Flow cards
 lib/NottyApi.js         Client for the NOTTY cloud API
 lib/pairing.js          Email-code login, shared by pairing and repair
-drivers/litterbox/      Revoloo One driver, device and pairing views
-drivers/cat/            Cat driver, device and pairing views
+drivers/litterbox/      Revoloo One driver, device, pairing (pair/) and repair (repair/) views
+drivers/cat/            Cat driver, device, pairing (pair/) and repair (repair/) views
 locales/                English and Dutch texts
 assets/                 App icon and images
 assets/source/          SVG sources of the images and render.js
