@@ -1,4 +1,8 @@
 {
+  "0.2.1": {
+    "en": "Experimental: logs in with its own device id, so you may stay logged in to the NOTTY app at the same time.",
+    "nl": "Experimenteel: logt in met een eigen apparaatnummer, zodat je mogelijk tegelijk ingelogd blijft in de NOTTY-app."
+  },
   "0.2.0": {
     "en": "First version: Revoloo One litter box with status, commands, events and Flow cards, and cats matched by weight.",
     "nl": "Eerste versie: Revoloo One kattenbak met status, bediening, gebeurtenissen en Flow-kaarten, en katten herkend op gewicht."

@@ -10,7 +10,8 @@
     "log_in": "Log in",
     "repair_done": "Logged in again",
     "email_required": "Enter your email address first",
-    "code_required": "Enter the code from the email"
+    "code_required": "Enter the code from the email",
+    "retry_new_code": "Logging in did not work. Please go back, request a new code and try again."
   },
   "device": {
     "offline": "The litter box is offline according to the NOTTY cloud",

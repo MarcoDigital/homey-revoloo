@@ -10,7 +10,8 @@
     "log_in": "Inloggen",
     "repair_done": "Opnieuw ingelogd",
     "email_required": "Vul eerst je e-mailadres in",
-    "code_required": "Vul de code uit de mail in"
+    "code_required": "Vul de code uit de mail in",
+    "retry_new_code": "Inloggen is niet gelukt. Ga terug, vraag een nieuwe code aan en probeer het opnieuw."
   },
   "device": {
     "offline": "De kattenbak is offline volgens de NOTTY-cloud",

@@ -1,5 +1,6 @@
 'use strict';
 
+const crypto = require('crypto');
 const Homey = require('homey');
 const { NottyApi } = require('./lib/NottyApi');
 
@@ -26,6 +27,25 @@ class RevolooApp extends Homey.App {
       });
     }
     return this._api;
+  }
+
+  /**
+   * Device id sent when logging in. The official app always sends "1"; a
+   * Homey-specific id is tried so the phone app may stay logged in at the
+   * same time. Falls back to "1" if the server rejected it before.
+   */
+  getLoginDeviceId() {
+    if (this.homey.settings.get('ownLoginDeviceIdDisabled')) return '1';
+    let id = this.homey.settings.get('loginDeviceId');
+    if (!id) {
+      id = `homey-${crypto.randomBytes(6).toString('hex')}`;
+      this.homey.settings.set('loginDeviceId', id);
+    }
+    return id;
+  }
+
+  disableOwnLoginDeviceId() {
+    this.homey.settings.set('ownLoginDeviceIdDisabled', true);
   }
 
   /** Persist a fresh login. Called from the pairing / repair flow. */
