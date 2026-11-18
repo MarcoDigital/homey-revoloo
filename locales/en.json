@@ -5,13 +5,12 @@
     "email_label": "Email address",
     "send_code": "Send code",
     "code_title": "Enter the code",
-    "code_hint": "Check your email for the code from NOTTY.",
+    "code_hint": "Check your email for the code from NOTTY. Note: NOTTY allows one login per account, so this logs you out of the NOTTY app on your phone.",
     "code_label": "Login code",
     "log_in": "Log in",
     "repair_done": "Logged in again",
     "email_required": "Enter your email address first",
-    "code_required": "Enter the code from the email",
-    "retry_new_code": "Logging in did not work. Please go back, request a new code and try again."
+    "code_required": "Enter the code from the email"
   },
   "device": {
     "offline": "The litter box is offline according to the NOTTY cloud",

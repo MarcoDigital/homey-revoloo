@@ -42,6 +42,11 @@ the litter box or create cat profiles. So, in this order:
    cat profiles there.
 4. Then install this app on Homey and add your devices (see below).
 
+> **One login at a time.** NOTTY allows only one active login per account.
+> Logging in on Homey logs you out of the NOTTY app on your phone, and logging
+> in on your phone again logs Homey out (use **Repair** to log in again).
+> Sending a different device id at login does not help; this was tested.
+
 ## Features
 
 ### Revoloo One litter box
@@ -119,7 +124,7 @@ and `homey` if running scripts is disabled.
 
 | Problem | Solution |
 |---|---|
-| Device shows "login expired" | Open the device, choose **Repair** and log in again with a new email code. |
+| Device shows "login expired" | You probably logged in to the NOTTY app on your phone, which ends the Homey login. Open the device, choose **Repair** and log in again with a new email code. |
 | Cat device unavailable | The cat was removed from the NOTTY app. Remove the cat in Homey as well. |
 | Litter box unavailable / offline | The NOTTY cloud reports the box as offline. Check its power and Wi-Fi in the NOTTY app. |
 | Visits go to the wrong cat, or to none | Check the cats' weights and the **weight tolerance** setting of each cat. |

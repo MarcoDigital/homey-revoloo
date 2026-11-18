@@ -5,13 +5,12 @@
     "email_label": "E-mailadres",
     "send_code": "Code versturen",
     "code_title": "Vul de code in",
-    "code_hint": "Kijk in je mail voor de code van NOTTY.",
+    "code_hint": "Kijk in je mail voor de code van NOTTY. Let op: NOTTY staat één login per account toe, dus hiermee log je uit in de NOTTY-app op je telefoon.",
     "code_label": "Inlogcode",
     "log_in": "Inloggen",
     "repair_done": "Opnieuw ingelogd",
     "email_required": "Vul eerst je e-mailadres in",
-    "code_required": "Vul de code uit de mail in",
-    "retry_new_code": "Inloggen is niet gelukt. Ga terug, vraag een nieuwe code aan en probeer het opnieuw."
+    "code_required": "Vul de code uit de mail in"
   },
   "device": {
     "offline": "De kattenbak is offline volgens de NOTTY-cloud",
