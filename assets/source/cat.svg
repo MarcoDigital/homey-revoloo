@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <rect width="500" height="500" fill="#FFFFFF"/>
+  <ellipse cx="250" cy="452" rx="150" ry="13" fill="#000" opacity="0.07"/>
+  <!-- tail -->
+  <path d="M318 440 C 398 446 430 380 392 330" fill="none" stroke="#7D858C" stroke-width="26" stroke-linecap="round"/>
+  <!-- body -->
+  <path d="M168 446 C 150 350 176 262 250 250 C 324 262 350 350 332 446 Z" fill="#9AA2A9"/>
+  <path d="M212 446 C 205 380 222 320 250 312 C 278 320 295 380 288 446 Z" fill="#C9CED3"/>
+  <!-- front paws -->
+  <ellipse cx="222" cy="444" rx="24" ry="12" fill="#B8BEC4"/>
+  <ellipse cx="278" cy="444" rx="24" ry="12" fill="#B8BEC4"/>
+  <!-- head -->
+  <circle cx="250" cy="190" r="86" fill="#9AA2A9"/>
+  <!-- folded ears (Scottish fold) -->
+  <path d="M180 140 Q182 104 222 112 Q206 128 196 150 Z" fill="#878F96"/>
+  <path d="M320 140 Q318 104 278 112 Q294 128 304 150 Z" fill="#878F96"/>
+  <!-- face -->
+  <ellipse cx="250" cy="222" rx="46" ry="34" fill="#C9CED3"/>
+  <ellipse cx="216" cy="186" rx="15" ry="17" fill="#E3B341"/>
+  <ellipse cx="284" cy="186" rx="15" ry="17" fill="#E3B341"/>
+  <ellipse cx="216" cy="188" rx="5" ry="13" fill="#2B2F33"/>
+  <ellipse cx="284" cy="188" rx="5" ry="13" fill="#2B2F33"/>
+  <path d="M240 210 L260 210 L250 222 Z" fill="#D98E95"/>
+  <path d="M250 222 Q240 236 230 230 M250 222 Q260 236 270 230" fill="none" stroke="#5E666C" stroke-width="3" stroke-linecap="round"/>
+  <g stroke="#6F777D" stroke-width="2.5" stroke-linecap="round">
+    <path d="M204 216 L150 206"/><path d="M204 226 L152 230"/>
+    <path d="M296 216 L350 206"/><path d="M296 226 L348 230"/>
+  </g>
+</svg>

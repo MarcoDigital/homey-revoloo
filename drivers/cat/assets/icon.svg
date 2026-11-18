@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
-  <path d="M220 300 L220 140 L370 250 Q480 220 590 250 L740 140 L740 300 Q820 420 780 560 Q720 780 480 800 Q240 780 180 560 Q140 420 220 300 Z" fill="none" stroke="#000" stroke-width="56" stroke-linejoin="round"/>
-  <circle cx="380" cy="470" r="40" fill="#000"/>
-  <circle cx="580" cy="470" r="40" fill="#000"/>
-  <path d="M440 580 L480 620 L520 580 Z" fill="#000"/>
+  <!-- Driver icon: sitting cat with folded ears, seen slightly from the right -->
+  <g fill="none" stroke="#000" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="450" cy="300" r="170"/>
+    <path d="M318 196 Q330 128 400 140"/>
+    <path d="M582 196 Q570 128 500 140"/>
+    <path d="M335 430 C 260 560 250 760 300 880 L 620 880 C 670 760 660 560 575 430"/>
+    <path d="M400 880 L400 700"/>
+    <path d="M520 880 L520 700"/>
+    <path d="M620 870 C 760 880 840 790 790 690"/>
+  </g>
 </svg>

@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
-  <rect x="150" y="380" width="660" height="430" rx="90" fill="none" stroke="#000" stroke-width="56"/>
-  <path d="M260 380 C260 220 700 220 700 380" fill="none" stroke="#000" stroke-width="56"/>
-  <circle cx="480" cy="600" r="60" fill="#000"/>
-  <circle cx="370" cy="510" r="38" fill="#000"/>
-  <circle cx="590" cy="510" r="38" fill="#000"/>
-  <circle cx="320" cy="620" r="34" fill="#000"/>
-  <circle cx="640" cy="620" r="34" fill="#000"/>
+  <!-- Driver icon: drum litter box on its base, seen slightly from the right -->
+  <g fill="none" stroke="#000" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="490" cy="400" r="310"/>
+    <ellipse cx="420" cy="410" rx="165" ry="195"/>
+    <path d="M300 520 Q420 570 540 520"/>
+    <rect x="150" y="730" width="680" height="170" rx="56"/>
+    <rect x="300" y="780" width="380" height="70" rx="24"/>
+  </g>
 </svg>

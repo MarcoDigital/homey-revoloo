@@ -158,7 +158,8 @@
       },
       "images": {
         "small": "/drivers/litterbox/assets/images/small.png",
-        "large": "/drivers/litterbox/assets/images/large.png"
+        "large": "/drivers/litterbox/assets/images/large.png",
+        "xlarge": "/drivers/litterbox/assets/images/xlarge.png"
       },
       "pair": [
         { "id": "login_email", "navigation": { "next": "login_code" } },
@@ -200,7 +201,8 @@
       ],
       "images": {
         "small": "/drivers/cat/assets/images/small.png",
-        "large": "/drivers/cat/assets/images/large.png"
+        "large": "/drivers/cat/assets/images/large.png",
+        "xlarge": "/drivers/cat/assets/images/xlarge.png"
       },
       "pair": [
         { "id": "login_email", "navigation": { "next": "login_code" } },
