@@ -1,13 +1,32 @@
 # Revoloo for Homey
 
-Homey app for [Revoloo](https://revoloo.nl/) smart pet products. It currently
-supports the **Revoloo One** litter box. The Revoloo Serve (feeder) and Revoloo
-Stream (water fountain) are not supported yet.
+Homey app for [Revoloo](https://revoloo.nl/) smart pet products.
 
 Revoloo devices are set up and managed with the *NOTTY Smart Pet* app. This
 Homey app reads from and sends commands to the same cloud
-(`api.nottycat.com`). Other litter boxes on the NOTTY platform may work too,
-but that is untested.
+(`api.nottycat.com`).
+
+## Supported devices
+
+Revoloo has two product lines, each with a litter box, a feeder and a water
+fountain:
+
+| Product | Line | Type | Status |
+|---|---|---|---|
+| Revoloo One | One | Self-cleaning litter box | ✅ Supported, tested |
+| Revoloo Open | Open | Open litter box | ❓ May work, untested |
+| Revoloo Serve | One | Feeder | ❌ Not yet |
+| Revoloo Chow | Open | Feeder | ❌ Not yet |
+| Revoloo Stream | One | Water fountain | ❌ Not yet |
+| Revoloo Flow | Open | Water fountain | ❌ Not yet |
+
+Feeders and fountains are left out when you add a litter box. Other litter
+boxes on the NOTTY platform may work too, but that is untested.
+
+**Do you own one of the other devices?** Support can only be added with data
+from a real device. Please
+[open a "New device" issue](https://github.com/MarcoDigital/homey-revoloo/issues/new?template=new-device.md)
+with the logs described there.
 
 > Community app, not affiliated with Revoloo or NOTTY. The cloud API is
 > undocumented and may change at any time.
@@ -120,6 +139,7 @@ assets/                 App icon and images
 assets/source/          SVG sources of the images and render.js
 README.txt              App Store description (Homey shows this text, not README.md)
 .homeychangelog.json    Changelog shown in the Homey App Store
+.github/ISSUE_TEMPLATE/ Templates for bug reports and new device requests
 ```
 
 Run with live logs:

@@ -37,6 +37,10 @@
     <circle cx="40" cy="11" r="4.5" fill="#B9B2A8"/>
     <rect x="58" y="5" width="28" height="12" rx="6" fill="#CFC8BF"/>
   </g>
+  <!-- cradle: wraps the lower part of the drum; drawn over the body and
+       behind the front cap, so the drum sits in it -->
+  <path d="M60 280 C 150 360 260 352 350 322 C 410 300 446 268 466 236 L 474 268 C 455 360 400 412 330 428 C 210 450 90 425 52 300 Z" fill="url(#lb-cradle)"/>
+  <path d="M60 280 C 150 360 260 352 350 322 C 410 300 446 268 466 236" fill="none" stroke="#F4F1EC" stroke-width="3"/>
   <!-- front cap -->
   <circle cx="196" cy="226" r="156" fill="url(#lb-front)" stroke="#E2DFDA" stroke-width="2"/>
   <!-- entrance with taupe rim -->
@@ -53,9 +57,6 @@
     </g>
   </g>
 
-  <!-- cradle under the drum -->
-  <path d="M58 300 C 84 400 210 420 330 398 C 400 384 450 340 470 270 L 470 300 C 452 372 400 414 330 428 C 210 450 86 424 52 318 Z" fill="url(#lb-cradle)"/>
-  <path d="M58 300 C 84 400 210 420 330 398 C 400 384 450 340 470 270" fill="none" stroke="#F4F1EC" stroke-width="3"/>
   <!-- display on the cradle -->
   <rect x="176" y="414" width="44" height="22" rx="4" fill="#EFECE8" stroke="#CFC8BF" stroke-width="1.5"/>
   <rect x="190" y="418" width="16" height="14" rx="2" fill="#3B4044"/>

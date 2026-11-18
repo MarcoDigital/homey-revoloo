@@ -1,5 +1,6 @@
 README.md
 assets/source/
+.github/
 node_modules/@resvg/
 .gitignore
 *.log
