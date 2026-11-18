@@ -1,0 +1,20 @@
+{
+  "pair": {
+    "email_title": "Log in to NOTTY",
+    "email_hint": "Enter the email address of your NOTTY Smart Pet account (the app you use to control your Revoloo). NOTTY will email you a login code.",
+    "email_label": "Email address",
+    "send_code": "Send code",
+    "code_title": "Enter the code",
+    "code_hint": "Check your email for the code from NOTTY.",
+    "code_label": "Login code",
+    "log_in": "Log in",
+    "repair_done": "Logged in again",
+    "email_required": "Enter your email address first",
+    "code_required": "Enter the code from the email"
+  },
+  "device": {
+    "offline": "The litter box is offline according to the NOTTY cloud",
+    "login_expired": "NOTTY login expired. Use 'Repair' on this device to log in again.",
+    "cat_not_found": "This cat was not found in your NOTTY account"
+  }
+}

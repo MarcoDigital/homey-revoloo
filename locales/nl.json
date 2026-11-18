@@ -1,0 +1,20 @@
+{
+  "pair": {
+    "email_title": "Inloggen bij NOTTY",
+    "email_hint": "Vul het e-mailadres van je NOTTY Smart Pet-account in (de app waarmee je je Revoloo bedient). NOTTY mailt je een inlogcode.",
+    "email_label": "E-mailadres",
+    "send_code": "Code versturen",
+    "code_title": "Vul de code in",
+    "code_hint": "Kijk in je mail voor de code van NOTTY.",
+    "code_label": "Inlogcode",
+    "log_in": "Inloggen",
+    "repair_done": "Opnieuw ingelogd",
+    "email_required": "Vul eerst je e-mailadres in",
+    "code_required": "Vul de code uit de mail in"
+  },
+  "device": {
+    "offline": "De kattenbak is offline volgens de NOTTY-cloud",
+    "login_expired": "NOTTY-login is verlopen. Gebruik 'Repareren' op dit apparaat om opnieuw in te loggen.",
+    "cat_not_found": "Deze kat staat niet (meer) in je NOTTY-account"
+  }
+}

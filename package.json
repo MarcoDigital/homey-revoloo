@@ -1,0 +1,18 @@
+{
+  "name": "homey-revoloo",
+  "version": "0.2.0",
+  "description": "Homey app for Revoloo smart pet products (One litter box), via the NOTTY Smart Pet cloud",
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "validate": "homey app validate --level debug",
+    "run": "homey app run",
+    "install-app": "homey app install"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

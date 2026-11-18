@@ -1,0 +1,33 @@
+<header class="homey-header">
+  <h1 class="homey-title" data-i18n="pair.email_title"></h1>
+  <p class="homey-subtitle" data-i18n="pair.email_hint"></p>
+</header>
+
+<form class="homey-form" id="email-form">
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="email" data-i18n="pair.email_label"></label>
+    <input class="homey-form-input" id="email" type="email" autocomplete="email" required />
+  </div>
+  <button class="homey-button-primary-full" type="submit" data-i18n="pair.send_code"></button>
+</form>
+
+<script type="application/javascript">
+  Homey.emit('has_session').then((loggedIn) => {
+    if (loggedIn) Homey.showView('list_devices');
+  }).catch(() => {});
+
+  document.getElementById('email-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    Homey.showLoadingOverlay();
+    Homey.emit('send_code', { email })
+      .then(() => {
+        Homey.hideLoadingOverlay();
+        Homey.nextView();
+      })
+      .catch((err) => {
+        Homey.hideLoadingOverlay();
+        Homey.alert(err.message || String(err), 'error');
+      });
+  });
+</script>

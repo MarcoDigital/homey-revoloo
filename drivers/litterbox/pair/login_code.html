@@ -1,0 +1,30 @@
+<header class="homey-header">
+  <h1 class="homey-title" data-i18n="pair.code_title"></h1>
+  <p class="homey-subtitle" data-i18n="pair.code_hint"></p>
+</header>
+
+<form class="homey-form" id="code-form">
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="code" data-i18n="pair.code_label"></label>
+    <input class="homey-form-input" id="code" type="text" inputmode="numeric" autocomplete="one-time-code" required />
+  </div>
+  <button class="homey-button-primary-full" type="submit" data-i18n="pair.log_in"></button>
+</form>
+
+<script type="application/javascript">
+  document.getElementById('code-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const code = document.getElementById('code').value.trim();
+    Homey.showLoadingOverlay();
+    Homey.emit('login', { code })
+      .then(() => {
+        Homey.hideLoadingOverlay();
+        // Pairing continues to list_devices; in repair this view is the last one.
+        Homey.nextView();
+      })
+      .catch((err) => {
+        Homey.hideLoadingOverlay();
+        Homey.alert(err.message || String(err), 'error');
+      });
+  });
+</script>
