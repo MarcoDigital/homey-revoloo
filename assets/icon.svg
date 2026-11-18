@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
-  <!-- App icon: a drum litter box shaped like a cat head -->
+  <!-- App icon: the round front of a drum litter box, with cat ears -->
   <g fill="none" stroke="#000" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
     <path d="M186 360 L164 92 L310 236"/>
     <path d="M774 360 L796 92 L650 236"/>
     <circle cx="480" cy="530" r="340"/>
-    <ellipse cx="480" cy="580" rx="190" ry="170"/>
-    <path d="M330 640 Q480 700 630 640"/>
+    <circle cx="480" cy="540" r="185"/>
+    <path d="M335 620 L625 620"/>
   </g>
 </svg>

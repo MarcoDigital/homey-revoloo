@@ -33,35 +33,71 @@
   </g>
   <!-- litter box -->
   <svg x="150" y="90" width="520" height="520" viewBox="0 0 500 500">
+  <!-- Revoloo One: a drum lying on its side in a curved cradle on four legs,
+       seen from the front left. Original illustration. -->
   <defs>
-    <linearGradient id="lb-drum" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="lb-body" x1="0" y1="0" x2="1" y2="0.4">
+      <stop offset="0" stop-color="#F4F3F0"/>
+      <stop offset="1" stop-color="#DEDBD6"/>
+    </linearGradient>
+    <linearGradient id="lb-front" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#E4E8EC"/>
+      <stop offset="1" stop-color="#ECEAE6"/>
     </linearGradient>
-    <linearGradient id="lb-base" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#F1F3F5"/>
-      <stop offset="1" stop-color="#D9DEE3"/>
+    <linearGradient id="lb-cradle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E4DFD8"/>
+      <stop offset="1" stop-color="#CFC8BF"/>
     </linearGradient>
-    <clipPath id="lb-door"><ellipse cx="232" cy="222" rx="92" ry="104"/></clipPath>
+    <clipPath id="lb-door"><circle cx="196" cy="226" r="78"/></clipPath>
   </defs>
   
-  <ellipse cx="250" cy="452" rx="178" ry="14" fill="#000" opacity="0.07"/>
-  <!-- base with waste drawer -->
-  <rect x="82" y="352" width="336" height="92" rx="26" fill="url(#lb-base)" stroke="#C9CFD5" stroke-width="2"/>
-  <rect x="146" y="378" width="208" height="42" rx="12" fill="#E6EAEE" stroke="#C9CFD5" stroke-width="2"/>
-  <rect x="226" y="394" width="48" height="8" rx="4" fill="#C3CAD1"/>
-  <!-- drum -->
-  <circle cx="250" cy="208" r="168" fill="url(#lb-drum)" stroke="#CDD3D9" stroke-width="3"/>
-  <!-- entrance -->
-  <ellipse cx="232" cy="222" rx="92" ry="104" fill="#2E3A40"/>
-  <g clip-path="url(#lb-door)">
-    <path d="M120 282 Q232 256 344 282 L344 340 L120 340 Z" fill="#D9C7A6"/>
-    <path d="M120 282 Q232 256 344 282" fill="none" stroke="#C7B28C" stroke-width="4"/>
-    <ellipse cx="200" cy="160" rx="60" ry="40" fill="#FFFFFF" opacity="0.06"/>
+  <g transform="translate(30 30) scale(0.88)">
+
+  <!-- mat -->
+  <path d="M28 446 L300 446 Q330 446 352 460 L362 470 L40 470 Q18 470 22 458 Z" fill="#A9AEB1"/>
+  <path d="M40 452 L300 452 Q322 452 338 462 L50 462 Z" fill="#B9BEC1"/>
+
+  <!-- back legs -->
+  <path d="M398 360 L432 430 L446 428 L420 356 Z" fill="#CFC8BF"/>
+  <!-- drum body (cylinder going back to the right) -->
+  <path d="M196 70 C 330 62 448 116 452 232 C 456 336 370 384 196 382 Z" fill="url(#lb-body)"/>
+  <!-- seam between front cap and body -->
+  <path d="M244 76 C 300 120 318 300 254 380" fill="none" stroke="#D6D2CC" stroke-width="2"/>
+  <!-- control panel on top of the drum -->
+  <g transform="translate(330 128) rotate(14)">
+    <rect x="0" y="0" width="92" height="22" rx="6" fill="#EDEBE7" stroke="#D3CEC7" stroke-width="1.5"/>
+    <rect x="8" y="7" width="8" height="8" rx="2" fill="#B9B2A8"/>
+    <rect x="22" y="7" width="8" height="8" rx="2" fill="#B9B2A8"/>
+    <circle cx="40" cy="11" r="4.5" fill="#B9B2A8"/>
+    <rect x="58" y="5" width="28" height="12" rx="6" fill="#CFC8BF"/>
   </g>
-  <ellipse cx="232" cy="222" rx="92" ry="104" fill="none" stroke="#4A8C7B" stroke-width="12"/>
-  <!-- status light -->
-  <rect x="340" y="120" width="10" height="40" rx="5" fill="#4A8C7B" opacity="0.85"/>
+  <!-- front cap -->
+  <circle cx="196" cy="226" r="156" fill="url(#lb-front)" stroke="#E2DFDA" stroke-width="2"/>
+  <!-- entrance with taupe rim -->
+  <circle cx="196" cy="226" r="96" fill="#CDC3B6"/>
+  <circle cx="196" cy="226" r="80" fill="#C2B7A9"/>
+  <circle cx="196" cy="226" r="78" fill="#3B4044"/>
+  <g clip-path="url(#lb-door)">
+    <rect x="110" y="150" width="172" height="70" fill="#4A5055"/>
+    <path d="M100 262 Q196 244 292 262 L292 320 L100 320 Z" fill="#2E3236"/>
+    <g stroke="#5B6166" stroke-width="3">
+      <path d="M110 270 L282 270"/><path d="M110 282 L282 282"/><path d="M110 294 L282 294"/>
+      <path d="M140 262 L140 310"/><path d="M168 258 L168 310"/><path d="M196 256 L196 310"/>
+      <path d="M224 258 L224 310"/><path d="M252 262 L252 310"/>
+    </g>
+  </g>
+
+  <!-- cradle under the drum -->
+  <path d="M58 300 C 84 400 210 420 330 398 C 400 384 450 340 470 270 L 470 300 C 452 372 400 414 330 428 C 210 450 86 424 52 318 Z" fill="url(#lb-cradle)"/>
+  <path d="M58 300 C 84 400 210 420 330 398 C 400 384 450 340 470 270" fill="none" stroke="#F4F1EC" stroke-width="3"/>
+  <!-- display on the cradle -->
+  <rect x="176" y="414" width="44" height="22" rx="4" fill="#EFECE8" stroke="#CFC8BF" stroke-width="1.5"/>
+  <rect x="190" y="418" width="16" height="14" rx="2" fill="#3B4044"/>
+
+  <!-- front legs -->
+  <path d="M100 400 L74 458 L90 460 L120 406 Z" fill="#D9D3CB"/>
+  <path d="M286 426 L290 474 L306 474 L304 424 Z" fill="#D9D3CB"/>
+  </g>
 </svg>
   <!-- cat -->
   <svg x="590" y="226" width="390" height="390" viewBox="0 0 500 500">

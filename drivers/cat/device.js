@@ -4,7 +4,6 @@ const Homey = require('homey');
 
 const POLL_MS = 15 * 60 * 1000;
 const LB_TO_KG = 0.45359237;
-const OBSOLETE_CAPABILITIES = ['cat_toilet_time_today'];
 
 function toNumber(value) {
   const n = Number(value);
@@ -24,9 +23,6 @@ class CatDevice extends Homey.Device {
 
   async onInit() {
     this.petId = this.getData().id;
-    for (const cap of OBSOLETE_CAPABILITIES) {
-      if (this.hasCapability(cap)) await this.removeCapability(cap).catch(this.error);
-    }
     this._schedule(2000);
   }
 

@@ -1,10 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
-  <!-- Driver icon: drum litter box on its base, seen slightly from the right -->
+  <!-- Driver icon: Revoloo One, a drum on its side in a cradle on legs, seen from the front left -->
   <g fill="none" stroke="#000" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="490" cy="400" r="310"/>
-    <ellipse cx="420" cy="410" rx="165" ry="195"/>
-    <path d="M300 520 Q420 570 540 520"/>
-    <rect x="150" y="730" width="680" height="170" rx="56"/>
-    <rect x="300" y="780" width="380" height="70" rx="24"/>
+    <path d="M380 110 C 640 100 860 200 866 420 C 872 610 720 700 380 710"/>
+    <circle cx="380" cy="410" r="300"/>
+    <circle cx="380" cy="416" r="155"/>
+    <path d="M110 640 C 190 800 420 830 640 790 C 770 765 860 690 890 580"/>
+    <path d="M205 752 L160 890"/>
+    <path d="M560 806 L572 900"/>
+    <path d="M820 724 L874 846"/>
   </g>
 </svg>

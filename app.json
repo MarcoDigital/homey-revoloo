@@ -119,16 +119,6 @@
       "setable": false,
       "insights": true,
       "uiComponent": "sensor"
-    },
-    "cat_toilet_time_today": {
-      "type": "number",
-      "title": { "en": "Toilet time today", "nl": "Toilettijd vandaag" },
-      "units": { "en": "s" },
-      "decimals": 0,
-      "getable": true,
-      "setable": false,
-      "insights": true,
-      "uiComponent": "sensor"
     }
   },
   "drivers": [

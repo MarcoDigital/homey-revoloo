@@ -5,13 +5,13 @@ const { NottyApi } = require('./lib/NottyApi');
 
 const PETS_CACHE_MS = 30 * 1000;
 
-class NottyApp extends Homey.App {
+class RevolooApp extends Homey.App {
 
   async onInit() {
     this._api = null;
     this._petsCache = { at: 0, promise: null };
     this._registerFlowCards();
-    this.log('NOTTY app started');
+    this.log('Revoloo app started');
   }
 
   /** The shared, logged-in API client (one NOTTY account per Homey). */
@@ -86,4 +86,4 @@ class NottyApp extends Homey.App {
 
 }
 
-module.exports = NottyApp;
+module.exports = RevolooApp;
