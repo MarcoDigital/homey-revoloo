@@ -57,7 +57,8 @@ same time, give Homey its own account and share the litter box with it:
 4. In Homey, log in with the second account.
 
 Your phone stays logged in with your main account, and Homey uses the second
-one. (Sending a different device id at login does not avoid the limit; this
+one. The cats of the main account are also available to the second account
+after sharing the litter box (tested). (Sending a different device id at login does not avoid the limit; this
 was tested.)
 
 ## Features
