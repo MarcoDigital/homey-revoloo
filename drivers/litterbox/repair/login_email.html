@@ -1,20 +1,62 @@
 <header class="homey-header">
   <h1 class="homey-title" data-i18n="pair.email_title"></h1>
-  <p class="homey-subtitle" data-i18n="pair.email_hint"></p>
 </header>
 
-<form class="homey-form" id="email-form">
-  <div class="homey-form-group">
-    <label class="homey-form-label" for="email" data-i18n="pair.email_label"></label>
-    <input class="homey-form-input" id="email" type="email" autocomplete="email" required />
+<!-- Shown when a working NOTTY login exists -->
+<div id="session" style="display: none;">
+  <p class="homey-subtitle">
+    <span data-i18n="pair.logged_in_as"></span>
+    <strong id="session-email"></strong>
+  </p>
+  <button class="homey-button-primary-full" id="continue" type="button" data-i18n="pair.continue"></button>
+  <p style="text-align: center; margin-top: 16px;">
+    <a href="#" id="other-account" data-i18n="pair.other_account"></a>
+  </p>
+</div>
+
+<!-- Login form -->
+<div id="login" style="display: none;">
+  <p class="homey-subtitle" id="expired" style="display: none;" data-i18n="pair.session_expired"></p>
+  <p class="homey-subtitle" data-i18n="pair.email_hint"></p>
+  <div class="homey-form-group" style="padding: 12px; border-radius: 8px; background: rgba(74, 140, 123, 0.12);">
+    <p style="margin: 0 0 6px;"><strong data-i18n="pair.one_login_title"></strong></p>
+    <p style="margin: 0;" data-i18n="pair.one_login_tip"></p>
   </div>
-  <button class="homey-button-primary-full" type="submit" data-i18n="pair.send_code"></button>
-</form>
+  <form class="homey-form" id="email-form">
+    <div class="homey-form-group">
+      <label class="homey-form-label" for="email" data-i18n="pair.email_label"></label>
+      <input class="homey-form-input" id="email" type="email" autocomplete="email" required />
+    </div>
+    <button class="homey-button-primary-full" type="submit" data-i18n="pair.send_code"></button>
+  </form>
+</div>
 
 <script type="application/javascript">
-  Homey.emit('has_session').then((loggedIn) => {
-    if (loggedIn) Homey.showView('list_devices');
-  }).catch(() => {});
+  const show = (id, visible) => { document.getElementById(id).style.display = visible ? '' : 'none'; };
+
+  Homey.emit('get_session')
+    .then((state) => {
+      if (state && state.email) document.getElementById('email').value = state.email;
+      if (state && state.loggedIn) {
+        document.getElementById('session-email').textContent = state.email || '';
+        show('session', true);
+      } else {
+        show('expired', Boolean(state && state.expired));
+        show('login', true);
+      }
+    })
+    .catch(() => show('login', true));
+
+  document.getElementById('continue').addEventListener('click', () => {
+    Homey.showView('list_devices');
+  });
+
+  document.getElementById('other-account').addEventListener('click', (event) => {
+    event.preventDefault();
+    document.getElementById('email').value = '';
+    show('session', false);
+    show('login', true);
+  });
 
   document.getElementById('email-form').addEventListener('submit', (event) => {
     event.preventDefault();

@@ -1,16 +1,22 @@
 {
   "pair": {
     "email_title": "Inloggen bij NOTTY",
-    "email_hint": "Vul het e-mailadres van je NOTTY Smart Pet-account in (de app waarmee je je Revoloo bedient). NOTTY mailt je een inlogcode.",
+    "email_hint": "Vul het e-mailadres in van een NOTTY Smart Pet-account (de app waarmee je je Revoloo bedient). NOTTY mailt je een inlogcode.",
     "email_label": "E-mailadres",
     "send_code": "Code versturen",
     "code_title": "Vul de code in",
-    "code_hint": "Kijk in je mail voor de code van NOTTY. Let op: NOTTY staat één login per account toe, dus hiermee log je uit in de NOTTY-app op je telefoon.",
+    "code_hint": "Kijk in je mail voor de code van NOTTY.",
     "code_label": "Inlogcode",
     "log_in": "Inloggen",
     "repair_done": "Opnieuw ingelogd",
     "email_required": "Vul eerst je e-mailadres in",
-    "code_required": "Vul de code uit de mail in"
+    "code_required": "Vul de code uit de mail in",
+    "one_login_title": "NOTTY staat één login per account toe",
+    "one_login_tip": "Als je hier inlogt, wordt dat account uitgelogd in de NOTTY-app. Tip: deel in de NOTTY-app je kattenbak met een tweede account (een ander e-mailadres) en log hier met dat account in. Dan blijf je op je telefoon ingelogd.",
+    "logged_in_as": "Ingelogd als",
+    "continue": "Doorgaan",
+    "other_account": "Ander account gebruiken",
+    "session_expired": "Je NOTTY-login is beëindigd, waarschijnlijk omdat je met hetzelfde account ergens anders hebt ingelogd. Log opnieuw in."
   },
   "device": {
     "offline": "De kattenbak is offline volgens de NOTTY-cloud",

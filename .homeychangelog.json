@@ -1,7 +1,7 @@
 {
   "0.2.1": {
-    "en": "Fixes Repair: logging in again from a device works now.",
-    "nl": "Repareren werkt weer: opnieuw inloggen vanaf een apparaat lukt nu."
+    "en": "Repair works again. The login screen checks whether your NOTTY login still works, lets you switch accounts, and explains how to use a second NOTTY account so you stay logged in on your phone.",
+    "nl": "Repareren werkt weer. Het inlogscherm controleert of je NOTTY-login nog werkt, laat je van account wisselen en legt uit hoe je met een tweede NOTTY-account ook op je telefoon ingelogd blijft."
   },
   "0.2.0": {
     "en": "First version: Revoloo One litter box with status, commands, events and Flow cards, and cats matched by weight.",

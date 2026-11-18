@@ -42,10 +42,23 @@ the litter box or create cat profiles. So, in this order:
    cat profiles there.
 4. Then install this app on Homey and add your devices (see below).
 
-> **One login at a time.** NOTTY allows only one active login per account.
-> Logging in on Homey logs you out of the NOTTY app on your phone, and logging
-> in on your phone again logs Homey out (use **Repair** to log in again).
-> Sending a different device id at login does not help; this was tested.
+### Recommended: a second NOTTY account for Homey
+
+NOTTY allows only one active login per account. If Homey and your phone use
+the same account, logging in on one logs the other out. To use both at the
+same time, give Homey its own account and share the litter box with it:
+
+1. In the NOTTY app, log out (Home → Settings → Log out) and register a new
+   account with a second email address. A separate alias address works; an
+   address with `+` (like `name+homey@…`) has not been tested.
+2. Log out again and log in with your main account.
+3. Open the litter box in the NOTTY app and use **Share device** to invite the
+   second account.
+4. In Homey, log in with the second account.
+
+Your phone stays logged in with your main account, and Homey uses the second
+one. (Sending a different device id at login does not avoid the limit; this
+was tested.)
 
 ## Features
 
@@ -124,7 +137,7 @@ and `homey` if running scripts is disabled.
 
 | Problem | Solution |
 |---|---|
-| Device shows "login expired" | You probably logged in to the NOTTY app on your phone, which ends the Homey login. Open the device, choose **Repair** and log in again with a new email code. |
+| Device shows "login expired" | You probably logged in to the NOTTY app with the same account, which ends the Homey login. Open the device, choose **Repair** and log in again. To avoid this, use a second NOTTY account for Homey (see above). |
 | Cat device unavailable | The cat was removed from the NOTTY app. Remove the cat in Homey as well. |
 | Litter box unavailable / offline | The NOTTY cloud reports the box as offline. Check its power and Wi-Fi in the NOTTY app. |
 | Visits go to the wrong cat, or to none | Check the cats' weights and the **weight tolerance** setting of each cat. |
