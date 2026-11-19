@@ -1,6 +1,6 @@
 {
   "id": "nl.revoloo",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "compatibility": ">=12.2.0",
   "sdk": 3,
   "platforms": [
@@ -608,6 +608,24 @@
               "nl": "Gewicht (kg)"
             },
             "example": 4.2
+          },
+          {
+            "name": "cat",
+            "type": "string",
+            "title": {
+              "en": "Cat",
+              "nl": "Kat"
+            },
+            "example": "Kiwi"
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Time in the litter box (s)",
+              "nl": "Tijd in de kattenbak (s)"
+            },
+            "example": 36
           }
         ],
         "args": [
@@ -659,8 +677,8 @@
           "nl": "Kat heeft de kattenbak gebruikt"
         },
         "hint": {
-          "en": "The visit is assigned to the cat with the closest weight (see the weight tolerance setting).",
-          "nl": "Het bezoek wordt toegewezen aan de kat met het dichtstbijzijnde gewicht (zie de instelling gewichtsmarge)."
+          "en": "Uses the cat NOTTY recognised. If NOTTY did not recognise the cat, the cat with the closest weight gets the visit (see the weight tolerance setting).",
+          "nl": "Gebruikt de kat die NOTTY herkende. Herkent NOTTY de kat niet, dan krijgt de kat met het dichtstbijzijnde gewicht het bezoek (zie de instelling gewichtsmarge)."
         },
         "tokens": [
           {
@@ -680,6 +698,15 @@
               "nl": "Gewicht (kg)"
             },
             "example": 4.2
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Time in the litter box (s)",
+              "nl": "Tijd in de kattenbak (s)"
+            },
+            "example": 36
           }
         ],
         "args": [

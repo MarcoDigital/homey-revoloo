@@ -47,6 +47,15 @@ function parseWeightKg(text) {
   return null;
 }
 
+/** "Kiwi just spent 36s in the litter box." -> 36; "1m 20s" -> 80. */
+function parseDurationS(text) {
+  const t = text || '';
+  const min = /(\d+)\s*(?:m|min|mins|minutes?)\b/i.exec(t);
+  const sec = /(\d+)\s*(?:s|sec|secs|seconds?)\b/i.exec(t);
+  if (!min && !sec) return null;
+  return (min ? Number(min[1]) * 60 : 0) + (sec ? Number(sec[1]) : 0);
+}
+
 class LitterBoxDevice extends Homey.Device {
 
   async onInit() {
@@ -175,16 +184,23 @@ class LitterBoxDevice extends Homey.Device {
 
       await driver.eventTrigger.trigger(this, { event: text, type }).catch(this.error);
 
-      const weight = parseWeightKg(text);
-      const isVisit = await this.homey.app.onLitterEvent(event, weight).catch((err) => {
+      const duration = parseDurationS(text);
+      let weight = parseWeightKg(text);
+      const { visit, cat } = await this.homey.app.onLitterEvent(event, weight, duration).catch((err) => {
         this.error('onLitterEvent failed:', err.message);
-        return false;
+        return { visit: false, cat: null };
       });
-      if (isVisit) {
+      if (visit) {
+        // Events that name the cat carry no weight: use that cat's weight.
+        if (weight === null && cat) weight = cat.getReferenceWeight();
         if (weight !== null) await this._set('last_cat_weight', weight);
         // Flipping the value adds one "A cat used the litter box" line to the activity log.
         await this._set('litter_visit_log', !this.getCapabilityValue('litter_visit_log'));
-        await driver.catVisitTrigger.trigger(this, { weight: weight === null ? 0 : weight }).catch(this.error);
+        await driver.catVisitTrigger.trigger(this, {
+          weight: weight === null ? 0 : weight,
+          cat: cat ? (cat.getNottyName() || cat.getName()) : '',
+          duration: duration === null ? 0 : duration,
+        }).catch(this.error);
       } else if (type === EVENT_COMPLETED && /clean/i.test(text)) {
         await driver.cleaningFinishedTrigger.trigger(this, { event: text }).catch(this.error);
       }

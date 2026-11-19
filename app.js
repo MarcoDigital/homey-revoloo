@@ -82,18 +82,21 @@ class RevolooApp extends Homey.App {
 
   /**
    * Handle a new litter box event and assign cat visits to a cat device.
-   * Returns true when the event was a cat visit.
+   * Returns { visit, cat }: visit is true when the event was a cat visit,
+   * cat is the cat device that got it (or null).
    *
-   * 1. If NOTTY recognised the cat (the event carries its pet id or names it),
-   *    that cat gets the visit.
-   * 2. Otherwise a "cat left" event goes to the cat with the closest weight.
+   * 1. If NOTTY recognised the cat (the event carries its pet id or names it,
+   *    like "Kiwi just spent 36s in the litter box."), that cat gets the visit.
+   * 2. Otherwise a "cat left" event ("A cat 4.17kg left the toilet") goes to
+   *    the cat with the closest weight.
    */
-  async onLitterEvent(event, weight) {
+  async onLitterEvent(event, weight, duration = null) {
     const type = Number(event.event_type_id);
     const text = String(event.event || '').toLowerCase();
     const cats = this.homey.drivers.getDriver('cat').getDevices();
+    const none = { visit: false, cat: null };
 
-    if (type === EVENT_IN_PROGRESS || type === EVENT_COMPLETED) return false;
+    if (type === EVENT_IN_PROGRESS || type === EVENT_COMPLETED) return none;
 
     const byNotty = cats.find((cat) => event.pet_id !== undefined && String(event.pet_id) === cat.petId)
       || cats.find((cat) => {
@@ -101,12 +104,12 @@ class RevolooApp extends Homey.App {
         return name && new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(text);
       });
     if (byNotty) {
-      await byNotty.registerVisit(weight);
-      return true;
+      await byNotty.registerVisit(weight, duration);
+      return { visit: true, cat: byNotty };
     }
 
-    if (type !== EVENT_CAT_LEFT) return false;
-    if (weight === null) return true;
+    if (type !== EVENT_CAT_LEFT) return none;
+    if (weight === null) return { visit: true, cat: null };
 
     let best = null;
     for (const cat of cats) {
@@ -116,11 +119,11 @@ class RevolooApp extends Homey.App {
       if (diff <= cat.getTolerance() && (!best || diff < best.diff)) best = { cat, diff };
     }
     if (best) {
-      await best.cat.registerVisit(weight);
-    } else if (cats.length) {
-      this.log(`No cat within tolerance for visit of ${weight} kg`);
+      await best.cat.registerVisit(weight, duration);
+      return { visit: true, cat: best.cat };
     }
-    return true;
+    if (cats.length) this.log(`No cat within tolerance for visit of ${weight} kg`);
+    return { visit: true, cat: null };
   }
 
   _registerFlowCards() {

@@ -94,28 +94,30 @@ One device per cat in your NOTTY account, showing its **weight** and
 
 Visits are assigned like this:
 
-1. **NOTTY recognises the cat.** If the litter box event names the cat, or
-   NOTTY's own daily statistics for that cat go up, the visit and weight go to
-   that cat. Keep the cats' weights up to date in the NOTTY app, so NOTTY can
-   tell them apart.
+1. **NOTTY recognises the cat** ("Kiwi just spent 36s in the litter box.").
+   The visit goes to that cat, with its weight from NOTTY and the time spent
+   in the litter box. Keep the cats' weights up to date in the NOTTY app, so
+   NOTTY can tell them apart.
 2. **NOTTY does not recognise the cat** ("A cat 4.17kg left the toilet.
    Please update pet profile."). The visit goes to the cat whose weight is
    closest, within a tolerance you can set per cat (default 0.5 kg).
 
-A visit is never counted twice: the count shown is the highest of the two
-sources. Each visit also appears in the cat's activity history.
+If an event is missed, NOTTY's daily statistics for the cat still add the
+visit a few minutes later, without counting it twice. "Visits today" follows
+Homey's clock; NOTTY's own day starts at midnight China time. Each visit also
+appears in the cat's activity history.
 
 ### Flow cards
 
 | Type | Card | Tokens |
 |---|---|---|
-| Trigger | A cat left the litter box | weight (kg) |
+| Trigger | A cat left the litter box | weight (kg), cat, time in the litter box (s) |
 | Trigger | Cleaning finished | event |
 | Trigger | New event | event, type |
 | Trigger | Status changed | status |
 | Trigger | Litter is almost empty | days left |
 | Trigger | Waste bag is almost full | days left |
-| Trigger (cat) | Cat used the litter box | visits, weight |
+| Trigger (cat) | Cat used the litter box | visits, weight, time in the litter box (s) |
 | Condition | Status is / is not … | |
 | Action | Start cleaning | |
 | Action | Level the litter | |

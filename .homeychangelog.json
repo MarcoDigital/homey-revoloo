@@ -1,4 +1,8 @@
 {
+  "0.3.1": {
+    "en": "Cats recognised by NOTTY now get their visits and weight, with the time spent in the litter box as a Flow token. Visits are no longer counted twice around NOTTY's day change.",
+    "nl": "Katten die NOTTY herkent krijgen nu hun bezoeken en gewicht, met de tijd in de kattenbak als Flow-tag. Bezoeken worden niet meer dubbel geteld rond de dagwissel van NOTTY."
+  },
   "0.3.0": {
     "en": "Activity history for the litter box and cats, \"litter almost empty\" and \"waste bag almost full\" alarms and Flow cards, cats recognised by NOTTY get their visits directly, a diagnostics page, and a clear message when an account may not change the mode.",
     "nl": "Activiteitengeschiedenis voor kattenbak en katten, meldingen en Flow-kaarten voor \"grit bijna op\" en \"afvalzak bijna vol\", katten die NOTTY herkent krijgen hun bezoeken direct, een diagnosepagina, en een duidelijke melding als een account de modus niet mag wijzigen."

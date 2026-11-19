@@ -4,6 +4,10 @@ const Homey = require('homey');
 
 const POLL_MS = 2 * 60 * 1000;
 const LB_TO_KG = 0.45359237;
+// How long a visit seen only in NOTTY's statistics waits for its event.
+const LATE_EVENT_MS = 5 * 60 * 1000;
+// Events remembered so NOTTY's statistics don't count them again.
+const MAX_CREDIT = 5;
 
 // Added after the first release; added to existing devices on start.
 const NEW_CAPABILITIES = ['cat_visit_log'];
@@ -27,8 +31,8 @@ function petWeightKg(pet) {
  * - Litter box events (App#onLitterEvent). If NOTTY recognised the cat, the
  *   event goes to that cat; otherwise to the cat with the closest weight.
  * - NOTTY's own daily statistics in /pet/list (today_wc_count, today_weight),
- *   used once NOTTY recognises the cat (has_litter_box_data). The visit count
- *   shown is the highest of the two, so a visit is never counted twice.
+ *   for visits the events missed (see _applyStats).
+ * The visit count shown is for today in Homey's time zone.
  */
 class CatDevice extends Homey.Device {
 
@@ -81,21 +85,34 @@ class CatDevice extends Homey.Device {
     await this._set('cat_visits_today', visits);
   }
 
-  /** A visit from a litter box event. `weight` may be null. */
-  async registerVisit(weight) {
+  /** A visit from a litter box event. `weight` and `duration` (s) may be null. */
+  async registerVisit(weight, duration = null) {
+    if (weight !== null && weight !== undefined) await this._set('measure_weight', weight);
+
+    // NOTTY's statistics already reported this visit (see _applyStats): it is
+    // counted, so only the details are new.
+    const pending = this.getStoreValue('pendingMissed');
+    if (pending && pending.n > 0) {
+      await this.setStoreValue('pendingMissed', pending.n > 1 ? { ...pending, n: pending.n - 1 } : null);
+      this.log('Visit event for a visit already seen in the NOTTY statistics');
+    } else {
+      // Remember it, so the statistics don't count it a second time.
+      await this.setStoreValue('eventCredit', Math.min(MAX_CREDIT, (this.getStoreValue('eventCredit') || 0) + 1));
+    }
+
     const visits = this._visitsToday() + 1;
     await this._setVisits(visits);
-    if (weight !== null && weight !== undefined) await this._set('measure_weight', weight);
-    this.log(`Visit: ${weight === null ? 'no weight' : `${weight} kg`}, ${visits} visit(s) today`);
-    await this._logVisit(visits);
+    this.log(`Visit: ${weight === null ? 'no weight' : `${weight} kg`}, ${duration === null ? '?' : duration} s, ${visits} visit(s) today`);
+    await this._logVisit(visits, duration);
   }
 
-  async _logVisit(visits) {
+  async _logVisit(visits, duration = null) {
     // Flipping the value adds one "Used the litter box" line to the activity log.
     await this._set('cat_visit_log', !this.getCapabilityValue('cat_visit_log'));
     await this.driver.visitTrigger.trigger(this, {
       visits,
       weight: this.getCapabilityValue('measure_weight') || 0,
+      duration: duration === null ? 0 : duration,
     }).catch(this.error);
   }
 
@@ -134,19 +151,47 @@ class CatDevice extends Homey.Device {
       await this._set('measure_weight', weight);
     }
 
-    // NOTTY's own visit count, if higher than what the events gave us.
-    const nottyVisits = toNumber(pet.today_wc_count);
-    const ours = this._visitsToday();
-    if (nottyVisits !== null && nottyVisits > ours) {
-      await this._setVisits(nottyVisits);
-      // Only report visits that happened while Homey was watching.
-      if (this.getStoreValue('statsSeen') === this._todayKey()) {
-        for (let v = ours + 1; v <= nottyVisits; v++) await this._logVisit(v);
-      }
-    } else if (this.getCapabilityValue('cat_visits_today') === null) {
-      await this._set('cat_visits_today', ours);
+    await this._applyStats(toNumber(pet.today_wc_count));
+    if (this.getCapabilityValue('cat_visits_today') === null) {
+      await this._set('cat_visits_today', this._visitsToday());
     }
-    await this.setStoreValue('statsSeen', this._todayKey());
+  }
+
+  /**
+   * Catch visits the litter box events missed, from NOTTY's daily visit
+   * count. NOTTY's "today" starts at midnight China time (17:00 or 18:00 in
+   * Europe), so the count is only used for its increases, never as the
+   * day's total. Increases already reported by an event are skipped; the
+   * rest wait a few minutes for a late event before they are counted.
+   */
+  async _applyStats(count, now = Date.now()) {
+    if (count === null) return;
+    const last = this.getStoreValue('nottyCount');
+    await this.setStoreValue('nottyCount', count);
+    if (last !== null && last !== undefined) {
+      // A lower count means NOTTY started a new day.
+      const delta = count >= last ? count - last : count;
+      if (delta > 0) {
+        const credit = this.getStoreValue('eventCredit') || 0;
+        await this.setStoreValue('eventCredit', Math.max(0, credit - delta));
+        const missed = Math.max(0, delta - credit);
+        if (missed > 0) {
+          const pending = this.getStoreValue('pendingMissed');
+          await this.setStoreValue('pendingMissed', { n: ((pending && pending.n) || 0) + missed, at: now });
+        }
+      }
+    }
+
+    const pending = this.getStoreValue('pendingMissed');
+    if (pending && pending.n > 0 && now - pending.at >= LATE_EVENT_MS) {
+      await this.setStoreValue('pendingMissed', null);
+      this.log(`${pending.n} visit(s) from the NOTTY statistics without an event`);
+      for (let i = 0; i < pending.n; i++) {
+        const visits = this._visitsToday() + 1;
+        await this._setVisits(visits);
+        await this._logVisit(visits);
+      }
+    }
   }
 
   async _set(capability, value) {
