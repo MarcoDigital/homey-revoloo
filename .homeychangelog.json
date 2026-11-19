@@ -1,4 +1,8 @@
 {
+  "0.3.3": {
+    "en": "A cat's weight is shown in kilograms (4.2 kg).",
+    "nl": "Het gewicht van een kat wordt in kilogram getoond (4,2 kg)."
+  },
   "0.3.1": {
     "en": "Cats recognised by NOTTY now get their visits and weight, with the time spent in the litter box as a Flow token. Visits are no longer counted twice around NOTTY's day change.",
     "nl": "Katten die NOTTY herkent krijgen nu hun bezoeken en gewicht, met de tijd in de kattenbak als Flow-tag. Bezoeken worden niet meer dubbel geteld rond de dagwissel van NOTTY."

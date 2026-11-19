@@ -64,7 +64,16 @@ class CatDevice extends Homey.Device {
 
   /** Weight used to match visits: last measured weight, else the profile weight. */
   getReferenceWeight() {
-    return toNumber(this.getCapabilityValue('measure_weight'));
+    const value = toNumber(this.getCapabilityValue('measure_weight'));
+    if (value === null) return null;
+    // Version 0.3.2 stored grams.
+    return value < 100 ? value : Math.round(value / 10) / 100;
+  }
+
+  /** Weight in kg; measure_weight is shown in kg (see capabilitiesOptions in app.json). */
+  async _setWeightKg(kg) {
+    if (kg === null || kg === undefined) return;
+    await this._set('measure_weight', Math.round(kg * 100) / 100);
   }
 
   getTolerance() {
@@ -87,7 +96,7 @@ class CatDevice extends Homey.Device {
 
   /** A visit from a litter box event. `weight` and `duration` (s) may be null. */
   async registerVisit(weight, duration = null) {
-    if (weight !== null && weight !== undefined) await this._set('measure_weight', weight);
+    await this._setWeightKg(weight);
 
     // NOTTY's statistics already reported this visit (see _applyStats): it is
     // counted, so only the details are new.
@@ -111,7 +120,7 @@ class CatDevice extends Homey.Device {
     await this._set('cat_visit_log', !this.getCapabilityValue('cat_visit_log'));
     await this.driver.visitTrigger.trigger(this, {
       visits,
-      weight: this.getCapabilityValue('measure_weight') || 0,
+      weight: this.getReferenceWeight() || 0,
       duration: duration === null ? 0 : duration,
     }).catch(this.error);
   }
@@ -148,7 +157,7 @@ class CatDevice extends Homey.Device {
     // NOTTY's measured weight once it recognises the cat; before that, only
     // seed from the profile weight until a visit has been measured.
     if (weight !== null && (nottyKnowsCat || this.getReferenceWeight() === null)) {
-      await this._set('measure_weight', weight);
+      await this._setWeightKg(weight);
     }
 
     await this._applyStats(toNumber(pet.today_wc_count));

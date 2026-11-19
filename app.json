@@ -1,6 +1,6 @@
 {
   "id": "nl.revoloo",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "compatibility": ">=12.2.0",
   "sdk": 3,
   "platforms": [
@@ -465,6 +465,15 @@
         "cat_visits_today",
         "cat_visit_log"
       ],
+      "capabilitiesOptions": {
+        "measure_weight": {
+          "units": {
+            "en": "kg",
+            "nl": "kg"
+          },
+          "decimals": 1
+        }
+      },
       "settings": [
         {
           "id": "weight_tolerance",
