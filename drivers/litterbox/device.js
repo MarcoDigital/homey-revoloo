@@ -17,9 +17,15 @@ const BUSY = new Set(['cleaning', 'emptying', 'leveling']);
 // event_type_id values seen in get_info.events
 const EVENT_IN_PROGRESS = 10;
 const EVENT_COMPLETED = 11;
-const EVENT_CAT_LEFT = 12;
 
-const NEW_CAPABILITIES = ['last_cat_weight', 'last_event'];
+// Added after the first release; added to existing devices on start.
+const NEW_CAPABILITIES = [
+  'last_cat_weight', 'last_event', 'litter_cleaning', 'alarm_litter_low', 'alarm_bag_full', 'litter_visit_log',
+];
+
+// NOTTY answers with an error like "no permission" when a shared (non-owner)
+// account tries this.
+const PERMISSION_ERROR = /permission|not allowed|forbidden|no auth|权限/i;
 
 function pick(obj, ...keys) {
   for (const key of keys) {
@@ -93,6 +99,7 @@ class LitterBoxDevice extends Homey.Device {
       this.log('get_info response:', JSON.stringify(info));
       this._loggedRawInfo = true;
     }
+    this.homey.app.recordDiagnostic(`litterbox ${this.deviceId}`, info);
 
     // status_id: 1 = online, 0 = offline
     if (toNumber(info.status_id) === 0) {
@@ -114,8 +121,14 @@ class LitterBoxDevice extends Homey.Device {
     const previousStatus = this.getCapabilityValue('litter_status');
     await this._set('litter_status', status);
     await this._set('litter_mode', mode);
-    await this._set('litter_remaining_days', toNumber(pick(info, 'remaining_days')));
-    await this._set('bag_remaining_days', toNumber(pick(info, 'garbage_bag_remaining_days')));
+    if (status && status !== 'other') await this._set('litter_cleaning', BUSY.has(status));
+
+    const litterDays = toNumber(pick(info, 'remaining_days'));
+    const bagDays = toNumber(pick(info, 'garbage_bag_remaining_days'));
+    await this._set('litter_remaining_days', litterDays);
+    await this._set('bag_remaining_days', bagDays);
+    await this._setAlarm('alarm_litter_low', litterDays, 'litter_low_days', this.driver.litterLowTrigger);
+    await this._setAlarm('alarm_bag_full', bagDays, 'bag_low_days', this.driver.bagFullTrigger);
     await this._set('clean_count_today', toNumber(pick(info, 'today_clean_count')));
     await this._set('toilet_count_today', toNumber(pick(info, 'toilet_count', 'today_toilet_count')));
 
@@ -145,8 +158,8 @@ class LitterBoxDevice extends Homey.Device {
     const lastSeen = this.getStoreValue('lastEventId');
     if (lastSeen === null || lastSeen === undefined) {
       await this.setStoreValue('lastEventId', Number(newest.event_id));
-      const lastVisit = [...sorted].reverse().find((e) => Number(e.event_type_id) === EVENT_CAT_LEFT);
-      if (lastVisit) await this._set('last_cat_weight', parseWeightKg(lastVisit.event));
+      const lastWeight = [...sorted].reverse().map((e) => parseWeightKg(e.event)).find((w) => w !== null);
+      if (lastWeight !== undefined) await this._set('last_cat_weight', lastWeight);
       return;
     }
 
@@ -162,17 +175,30 @@ class LitterBoxDevice extends Homey.Device {
 
       await driver.eventTrigger.trigger(this, { event: text, type }).catch(this.error);
 
-      if (type === EVENT_CAT_LEFT) {
-        const weight = parseWeightKg(text);
-        if (weight !== null) {
-          await this._set('last_cat_weight', weight);
-          await driver.catVisitTrigger.trigger(this, { weight }).catch(this.error);
-          await this.homey.app.onCatVisit(weight).catch(this.error);
-        }
+      const weight = parseWeightKg(text);
+      const isVisit = await this.homey.app.onLitterEvent(event, weight).catch((err) => {
+        this.error('onLitterEvent failed:', err.message);
+        return false;
+      });
+      if (isVisit) {
+        if (weight !== null) await this._set('last_cat_weight', weight);
+        // Flipping the value adds one "A cat used the litter box" line to the activity log.
+        await this._set('litter_visit_log', !this.getCapabilityValue('litter_visit_log'));
+        await driver.catVisitTrigger.trigger(this, { weight: weight === null ? 0 : weight }).catch(this.error);
       } else if (type === EVENT_COMPLETED && /clean/i.test(text)) {
         await driver.cleaningFinishedTrigger.trigger(this, { event: text }).catch(this.error);
       }
     }
+  }
+
+  /** Turn an alarm on when `days` drops to the threshold setting; trigger once on the way in. */
+  async _setAlarm(capability, days, settingKey, trigger) {
+    if (days === null || !this.hasCapability(capability)) return;
+    const threshold = toNumber(this.getSetting(settingKey));
+    const active = days <= (threshold === null ? 1 : threshold);
+    const wasActive = this.getCapabilityValue(capability);
+    await this._set(capability, active);
+    if (active && wasActive === false) await trigger.trigger(this, { days }).catch(this.error);
   }
 
   async _set(capability, value) {
@@ -187,7 +213,15 @@ class LitterBoxDevice extends Homey.Device {
   }
 
   async setLitterMode(mode) {
-    await this.homey.app.getApi().setMode(this.deviceId, mode);
+    try {
+      await this.homey.app.getApi().setMode(this.deviceId, mode);
+    } catch (err) {
+      this.log('set_mode failed:', err.code, err.message);
+      if (PERMISSION_ERROR.test(err.message) || err.auth) {
+        throw new Error(this.homey.__('device.mode_not_allowed'));
+      }
+      throw err;
+    }
     this._schedule(3000);
   }
 

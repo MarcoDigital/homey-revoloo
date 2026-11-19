@@ -17,9 +17,11 @@ class CatDriver extends Homey.Driver {
       this.log('Pets on account:', pets.length);
       return pets.map((p) => {
         const id = String(p.pet_id !== undefined ? p.pet_id : p.id);
+        const name = p.alias || p.name || p.pet_name;
         return {
-          name: p.alias || p.name || p.pet_name || `Cat ${id}`,
+          name: name || `Cat ${id}`,
           data: { id },
+          store: { nottyName: name || null },
         };
       });
     });

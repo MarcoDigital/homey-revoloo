@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+  <style>
+    textarea { width: 100%; min-height: 360px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; box-sizing: border-box; }
+    .actions { display: flex; gap: 8px; margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <header class="homey-header">
+    <h1 class="homey-title" data-i18n="settings.title"></h1>
+    <p class="homey-subtitle" data-i18n="settings.intro"></p>
+  </header>
+
+  <div class="actions">
+    <button class="homey-button-primary" id="copy" type="button" data-i18n="settings.copy"></button>
+    <button class="homey-button-secondary" id="refresh" type="button" data-i18n="settings.refresh"></button>
+  </div>
+  <textarea id="output" readonly></textarea>
+  <p class="homey-subtitle" data-i18n="settings.privacy"></p>
+
+  <script type="text/javascript">
+    function onHomeyReady(Homey) {
+      const output = document.getElementById('output');
+
+      function load() {
+        Homey.get('diagnostics', (err, diagnostics) => {
+          if (err) {
+            output.value = String(err);
+            return;
+          }
+          output.value = diagnostics
+            ? JSON.stringify(diagnostics, null, 2)
+            : Homey.__('settings.empty');
+        });
+      }
+
+      document.getElementById('refresh').addEventListener('click', load);
+      document.getElementById('copy').addEventListener('click', () => {
+        output.select();
+        const done = () => Homey.alert(Homey.__('settings.copied'));
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(output.value).then(done).catch(() => {
+            document.execCommand('copy');
+            done();
+          });
+        } else {
+          document.execCommand('copy');
+          done();
+        }
+      });
+
+      load();
+      Homey.ready();
+    }
+  </script>
+</body>
+</html>

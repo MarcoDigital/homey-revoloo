@@ -21,6 +21,16 @@
   "device": {
     "offline": "De kattenbak is offline volgens de NOTTY-cloud",
     "login_expired": "NOTTY-login is verlopen. Gebruik 'Repareren' op dit apparaat om opnieuw in te loggen.",
-    "cat_not_found": "Deze kat staat niet (meer) in je NOTTY-account"
+    "cat_not_found": "Deze kat staat niet (meer) in je NOTTY-account",
+    "mode_not_allowed": "NOTTY staat dit account niet toe de modus te wijzigen. Alleen de eigenaar van de kattenbak kan dat; wijzig de modus in de NOTTY-app."
+  },
+  "settings": {
+    "title": "Diagnose",
+    "intro": "De laatste gegevens die de NOTTY-cloud naar deze app heeft gestuurd. Handig om problemen te melden of nieuwe apparaten toe te voegen.",
+    "copy": "Kopiëren",
+    "refresh": "Vernieuwen",
+    "copied": "Gekopieerd. Plak het in je bericht of GitHub-issue.",
+    "empty": "Nog geen gegevens. Voeg eerst een apparaat toe en wacht een minuut.",
+    "privacy": "E-mailadressen, tokens en serienummers van apparaten zijn verborgen. Controleer de tekst voordat je hem deelt."
   }
 }

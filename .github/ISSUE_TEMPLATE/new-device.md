@@ -13,16 +13,12 @@ labels: new device
 
 Support can only be added with data from a real device. To collect it:
 
-1. Install Node.js, then run `npm install -g homey` and `homey login`.
-2. Clone this repository and run `homey app run --remote` in its folder.
-3. In the Homey app, start adding a **Revoloo One litter box** and log in. You
-   don't have to finish adding a device.
-4. Copy the lines with `Devices on account:` and, if you added a device,
-   `get_info response:` from the terminal and paste them below.
-5. Stop with Ctrl+C. Note: this uninstalls the development app and removes its
-   devices; reinstall with `homey app install` afterwards.
-
-Before pasting, replace personal data such as your email address with `***`.
+1. Install the Revoloo app on Homey and add a **Revoloo One litter box** (log in
+   and select your device; feeders and fountains are logged even when they are
+   left out of the list).
+2. Open **More → Apps → Revoloo → Configure app** and tap **Copy**.
+3. Paste the text below. Email addresses, tokens and serial numbers are already
+   hidden, but check the text before posting.
 
 ```
 paste logs here

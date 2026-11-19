@@ -22,6 +22,8 @@ class LitterBoxDriver extends Homey.Driver {
     this.cleaningFinishedTrigger = this.homey.flow.getDeviceTriggerCard('litterbox_cleaning_finished');
     this.catVisitTrigger = this.homey.flow.getDeviceTriggerCard('litterbox_cat_visit');
     this.eventTrigger = this.homey.flow.getDeviceTriggerCard('litterbox_event');
+    this.litterLowTrigger = this.homey.flow.getDeviceTriggerCard('litterbox_litter_low');
+    this.bagFullTrigger = this.homey.flow.getDeviceTriggerCard('litterbox_bag_full');
   }
 
   async onPair(session) {
@@ -33,6 +35,7 @@ class LitterBoxDriver extends Homey.Driver {
     session.setHandler('list_devices', async () => {
       const devices = await this.homey.app.getApi().getDevices();
       this.log('Devices on account:', JSON.stringify(devices));
+      this.homey.app.recordDiagnostic('devices', devices);
       return devices.filter((d) => {
         if (isLitterBox(d)) return true;
         this.log('Skipping device that is not a litter box:', d.device_name || d.product_name || d.name);

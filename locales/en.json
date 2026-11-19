@@ -21,6 +21,16 @@
   "device": {
     "offline": "The litter box is offline according to the NOTTY cloud",
     "login_expired": "NOTTY login expired. Use 'Repair' on this device to log in again.",
-    "cat_not_found": "This cat was not found in your NOTTY account"
+    "cat_not_found": "This cat was not found in your NOTTY account",
+    "mode_not_allowed": "NOTTY does not allow this account to change the mode. Only the owner of the litter box can do that; change the mode in the NOTTY app."
+  },
+  "settings": {
+    "title": "Diagnostics",
+    "intro": "The latest data the NOTTY cloud sent to this app. Useful for reporting problems or adding support for new devices.",
+    "copy": "Copy",
+    "refresh": "Refresh",
+    "copied": "Copied. Paste it in your message or GitHub issue.",
+    "empty": "No data yet. Add a device first and wait a minute.",
+    "privacy": "Email addresses, tokens and device serial numbers are hidden. Check the text before you share it."
   }
 }

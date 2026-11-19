@@ -68,27 +68,42 @@ was tested.)
 | Shows | Notes |
 |---|---|
 | Status | Idle, cleaning, emptying, leveling or busy |
-| Mode | Auto, scheduled or soft stool; can also be changed |
+| Mode | Auto, scheduled or soft stool; can be changed by the owner account only (see below) |
 | Litter remaining | Days until the litter needs refilling |
 | Waste bag remaining | Days until the waste bag needs changing |
 | Cleanings today, visits today | As counted by the NOTTY cloud |
 | Last cat weight | Weight measured at the last visit |
 | Last event | E.g. "Automatic cleaning completed" |
+| Litter almost empty | Alarm when the litter days left reach a threshold you set (default 2 days) |
+| Waste bag almost full | Alarm when the waste bag days left reach a threshold you set (default 1 day) |
 
 Buttons: **clean now**, **level litter**, **empty litter**.
+
+The device's activity history shows when cleaning started and finished,
+when a cat used the litter box, and when the litter or waste bag alarm turned
+on or off.
+
+A shared (non-owner) NOTTY account can use the buttons, but NOTTY does not
+allow it to change the mode. Change the mode in the NOTTY app with the owner
+account; Homey then shows the new mode.
 
 ### Cat
 
 One device per cat in your NOTTY account, showing its **weight** and
 **toilet visits today**.
 
-NOTTY often does not recognise which cat used the litter box ("A cat 4.17kg
-left the toilet. Please update pet profile."), so its own per-cat statistics
-stay empty. This app therefore matches each visit to the cat whose weight is
-closest, within a tolerance you can set per cat (default 0.5 kg). After a
-match the cat's weight follows the measurement, so matching keeps working as
-the cat's weight changes. Two cats of about the same weight cannot be told
-apart.
+Visits are assigned like this:
+
+1. **NOTTY recognises the cat.** If the litter box event names the cat, or
+   NOTTY's own daily statistics for that cat go up, the visit and weight go to
+   that cat. Keep the cats' weights up to date in the NOTTY app, so NOTTY can
+   tell them apart.
+2. **NOTTY does not recognise the cat** ("A cat 4.17kg left the toilet.
+   Please update pet profile."). The visit goes to the cat whose weight is
+   closest, within a tolerance you can set per cat (default 0.5 kg).
+
+A visit is never counted twice: the count shown is the highest of the two
+sources. Each visit also appears in the cat's activity history.
 
 ### Flow cards
 
@@ -98,6 +113,8 @@ apart.
 | Trigger | Cleaning finished | event |
 | Trigger | New event | event, type |
 | Trigger | Status changed | status |
+| Trigger | Litter is almost empty | days left |
+| Trigger | Waste bag is almost full | days left |
 | Trigger (cat) | Cat used the litter box | visits, weight |
 | Condition | Status is / is not … | |
 | Action | Start cleaning | |
@@ -143,14 +160,24 @@ and `homey` if running scripts is disabled.
 | Litter box unavailable / offline | The NOTTY cloud reports the box as offline. Check its power and Wi-Fi in the NOTTY app. |
 | Visits go to the wrong cat, or to none | Check the cats' weights and the **weight tolerance** setting of each cat. |
 | Status shows "Busy" | The box reported a status code the app does not know yet. Please open an issue. |
+| Changing the mode says the account may not do that | You are logged in with a shared account. Change the mode in the NOTTY app with the owner account. |
+
+### Diagnostics
+
+The app's settings page (**More → Apps → Revoloo → Configure app**) shows the
+latest data the NOTTY cloud sent, with email addresses, tokens and serial
+numbers hidden. Use **Copy** and paste it in your issue when you report a
+problem or ask for support for a new device.
 
 ## Development
 
 ```
-app.js                  App: NOTTY session, shared pets cache, Flow cards, cat matching
+app.js                  App: NOTTY session, pets cache, diagnostics, Flow cards, cat visits
 app.json                Manifest: capabilities, drivers, Flow cards
 lib/NottyApi.js         Client for the NOTTY cloud API
 lib/pairing.js          Email-code login, shared by pairing and repair
+lib/redact.js           Hides personal data in the diagnostics
+settings/index.html     Diagnostics page
 drivers/litterbox/      Revoloo One driver, device, pairing (pair/) and repair (repair/) views
 drivers/cat/            Cat driver, device, pairing (pair/) and repair (repair/) views
 locales/                English and Dutch texts

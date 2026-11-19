@@ -1,9 +1,11 @@
 {
   "id": "nl.revoloo",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "compatibility": ">=12.2.0",
   "sdk": 3,
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "name": {
     "en": "Revoloo",
     "nl": "Revoloo"
@@ -12,7 +14,9 @@
     "en": "Smart cat care with your Revoloo One litter box",
     "nl": "Slimme kattenzorg met je Revoloo One kattenbak"
   },
-  "category": ["appliances"],
+  "category": [
+    "appliances"
+  ],
   "brandColor": "#4A8C7B",
   "permissions": [],
   "images": {
@@ -31,34 +35,94 @@
   "capabilities": {
     "litter_status": {
       "type": "enum",
-      "title": { "en": "Status", "nl": "Status" },
+      "title": {
+        "en": "Status",
+        "nl": "Status"
+      },
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
       "values": [
-        { "id": "idle", "title": { "en": "Idle", "nl": "Klaar" } },
-        { "id": "cleaning", "title": { "en": "Cleaning", "nl": "Schoonmaken" } },
-        { "id": "emptying", "title": { "en": "Emptying", "nl": "Legen" } },
-        { "id": "leveling", "title": { "en": "Leveling", "nl": "Egaliseren" } },
-        { "id": "other", "title": { "en": "Busy", "nl": "Bezig" } }
+        {
+          "id": "idle",
+          "title": {
+            "en": "Idle",
+            "nl": "Klaar"
+          }
+        },
+        {
+          "id": "cleaning",
+          "title": {
+            "en": "Cleaning",
+            "nl": "Schoonmaken"
+          }
+        },
+        {
+          "id": "emptying",
+          "title": {
+            "en": "Emptying",
+            "nl": "Legen"
+          }
+        },
+        {
+          "id": "leveling",
+          "title": {
+            "en": "Leveling",
+            "nl": "Egaliseren"
+          }
+        },
+        {
+          "id": "other",
+          "title": {
+            "en": "Busy",
+            "nl": "Bezig"
+          }
+        }
       ]
     },
     "litter_mode": {
       "type": "enum",
-      "title": { "en": "Mode", "nl": "Modus" },
+      "title": {
+        "en": "Mode",
+        "nl": "Modus"
+      },
       "getable": true,
       "setable": true,
       "uiComponent": "picker",
       "values": [
-        { "id": "auto", "title": { "en": "Auto", "nl": "Automatisch" } },
-        { "id": "scheduled", "title": { "en": "Scheduled", "nl": "Volgens schema" } },
-        { "id": "soft_stool", "title": { "en": "Soft stool", "nl": "Zachte ontlasting" } }
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto",
+            "nl": "Automatisch"
+          }
+        },
+        {
+          "id": "scheduled",
+          "title": {
+            "en": "Scheduled",
+            "nl": "Volgens schema"
+          }
+        },
+        {
+          "id": "soft_stool",
+          "title": {
+            "en": "Soft stool",
+            "nl": "Zachte ontlasting"
+          }
+        }
       ]
     },
     "litter_remaining_days": {
       "type": "number",
-      "title": { "en": "Litter remaining", "nl": "Grit resterend" },
-      "units": { "en": "days", "nl": "dagen" },
+      "title": {
+        "en": "Litter remaining",
+        "nl": "Grit resterend"
+      },
+      "units": {
+        "en": "days",
+        "nl": "dagen"
+      },
       "decimals": 0,
       "getable": true,
       "setable": false,
@@ -67,8 +131,14 @@
     },
     "bag_remaining_days": {
       "type": "number",
-      "title": { "en": "Waste bag remaining", "nl": "Afvalzak resterend" },
-      "units": { "en": "days", "nl": "dagen" },
+      "title": {
+        "en": "Waste bag remaining",
+        "nl": "Afvalzak resterend"
+      },
+      "units": {
+        "en": "days",
+        "nl": "dagen"
+      },
       "decimals": 0,
       "getable": true,
       "setable": false,
@@ -77,7 +147,10 @@
     },
     "clean_count_today": {
       "type": "number",
-      "title": { "en": "Cleanings today", "nl": "Schoonmaakbeurten vandaag" },
+      "title": {
+        "en": "Cleanings today",
+        "nl": "Schoonmaakbeurten vandaag"
+      },
       "decimals": 0,
       "getable": true,
       "setable": false,
@@ -86,7 +159,10 @@
     },
     "toilet_count_today": {
       "type": "number",
-      "title": { "en": "Visits today", "nl": "Bezoeken vandaag" },
+      "title": {
+        "en": "Visits today",
+        "nl": "Bezoeken vandaag"
+      },
       "decimals": 0,
       "getable": true,
       "setable": false,
@@ -95,8 +171,13 @@
     },
     "last_cat_weight": {
       "type": "number",
-      "title": { "en": "Last cat weight", "nl": "Laatste kattengewicht" },
-      "units": { "en": "kg" },
+      "title": {
+        "en": "Last cat weight",
+        "nl": "Laatste kattengewicht"
+      },
+      "units": {
+        "en": "kg"
+      },
       "decimals": 2,
       "getable": true,
       "setable": false,
@@ -105,7 +186,10 @@
     },
     "last_event": {
       "type": "string",
-      "title": { "en": "Last event", "nl": "Laatste gebeurtenis" },
+      "title": {
+        "en": "Last event",
+        "nl": "Laatste gebeurtenis"
+      },
       "getable": true,
       "setable": false,
       "insights": false,
@@ -113,38 +197,163 @@
     },
     "cat_visits_today": {
       "type": "number",
-      "title": { "en": "Toilet visits today", "nl": "Toiletbezoeken vandaag" },
+      "title": {
+        "en": "Toilet visits today",
+        "nl": "Toiletbezoeken vandaag"
+      },
       "decimals": 0,
       "getable": true,
       "setable": false,
       "insights": true,
       "uiComponent": "sensor"
+    },
+    "litter_cleaning": {
+      "type": "boolean",
+      "title": {
+        "en": "Cleaning",
+        "nl": "Schoonmaken"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Cleaning started",
+        "nl": "Schoonmaken gestart"
+      },
+      "insightsTitleFalse": {
+        "en": "Cleaning finished",
+        "nl": "Schoonmaken klaar"
+      },
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "alarm_litter_low": {
+      "type": "boolean",
+      "title": {
+        "en": "Litter almost empty",
+        "nl": "Grit bijna op"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Litter almost empty",
+        "nl": "Grit bijna op"
+      },
+      "insightsTitleFalse": {
+        "en": "Litter refilled",
+        "nl": "Grit bijgevuld"
+      },
+      "uiComponent": "sensor"
+    },
+    "alarm_bag_full": {
+      "type": "boolean",
+      "title": {
+        "en": "Waste bag almost full",
+        "nl": "Afvalzak bijna vol"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Waste bag almost full",
+        "nl": "Afvalzak bijna vol"
+      },
+      "insightsTitleFalse": {
+        "en": "Waste bag replaced",
+        "nl": "Afvalzak vervangen"
+      },
+      "uiComponent": "sensor"
+    },
+    "litter_visit_log": {
+      "type": "boolean",
+      "title": {
+        "en": "Cat visit",
+        "nl": "Kattenbezoek"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "A cat used the litter box",
+        "nl": "Een kat heeft de kattenbak gebruikt"
+      },
+      "insightsTitleFalse": {
+        "en": "A cat used the litter box",
+        "nl": "Een kat heeft de kattenbak gebruikt"
+      },
+      "uiComponent": null
+    },
+    "cat_visit_log": {
+      "type": "boolean",
+      "title": {
+        "en": "Litter box visit",
+        "nl": "Kattenbakbezoek"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Used the litter box",
+        "nl": "Heeft de kattenbak gebruikt"
+      },
+      "insightsTitleFalse": {
+        "en": "Used the litter box",
+        "nl": "Heeft de kattenbak gebruikt"
+      },
+      "uiComponent": null
     }
   },
   "drivers": [
     {
       "id": "litterbox",
-      "name": { "en": "Revoloo One litter box", "nl": "Revoloo One kattenbak" },
+      "name": {
+        "en": "Revoloo One litter box",
+        "nl": "Revoloo One kattenbak"
+      },
       "class": "other",
-      "platforms": ["local"],
-      "connectivity": ["cloud"],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
       "capabilities": [
         "litter_status",
+        "litter_cleaning",
         "litter_mode",
         "litter_remaining_days",
         "bag_remaining_days",
+        "alarm_litter_low",
+        "alarm_bag_full",
         "clean_count_today",
         "toilet_count_today",
         "last_cat_weight",
         "last_event",
         "button.clean",
         "button.level",
-        "button.empty"
+        "button.empty",
+        "litter_visit_log"
       ],
       "capabilitiesOptions": {
-        "button.clean": { "title": { "en": "Clean now", "nl": "Nu schoonmaken" } },
-        "button.level": { "title": { "en": "Level litter", "nl": "Grit egaliseren" } },
-        "button.empty": { "title": { "en": "Empty litter", "nl": "Grit legen" } }
+        "button.clean": {
+          "title": {
+            "en": "Clean now",
+            "nl": "Nu schoonmaken"
+          }
+        },
+        "button.level": {
+          "title": {
+            "en": "Level litter",
+            "nl": "Grit egaliseren"
+          }
+        },
+        "button.empty": {
+          "title": {
+            "en": "Empty litter",
+            "nl": "Grit legen"
+          }
+        }
       },
       "images": {
         "small": "/drivers/litterbox/assets/images/small.png",
@@ -152,32 +361,118 @@
         "xlarge": "/drivers/litterbox/assets/images/xlarge.png"
       },
       "pair": [
-        { "id": "login_email", "navigation": { "next": "login_code" } },
-        { "id": "login_code", "navigation": { "prev": "login_email", "next": "list_devices" } },
-        { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } },
-        { "id": "add_devices", "template": "add_devices" }
+        {
+          "id": "login_email",
+          "navigation": {
+            "next": "login_code"
+          }
+        },
+        {
+          "id": "login_code",
+          "navigation": {
+            "prev": "login_email",
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
       ],
       "repair": [
-        { "id": "login_email", "navigation": { "next": "login_code" } },
-        { "id": "login_code", "navigation": { "prev": "login_email", "next": "repair_done" } },
-        { "id": "repair_done" }
+        {
+          "id": "login_email",
+          "navigation": {
+            "next": "login_code"
+          }
+        },
+        {
+          "id": "login_code",
+          "navigation": {
+            "prev": "login_email",
+            "next": "repair_done"
+          }
+        },
+        {
+          "id": "repair_done"
+        }
+      ],
+      "settings": [
+        {
+          "id": "litter_low_days",
+          "type": "number",
+          "label": {
+            "en": "Litter almost empty at",
+            "nl": "Grit bijna op bij"
+          },
+          "hint": {
+            "en": "Turn on \"Litter almost empty\" when this many days of litter are left, or fewer.",
+            "nl": "Zet \"Grit bijna op\" aan als er nog zoveel dagen grit over is, of minder."
+          },
+          "value": 2,
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "units": {
+            "en": "days",
+            "nl": "dagen"
+          }
+        },
+        {
+          "id": "bag_low_days",
+          "type": "number",
+          "label": {
+            "en": "Waste bag almost full at",
+            "nl": "Afvalzak bijna vol bij"
+          },
+          "hint": {
+            "en": "Turn on \"Waste bag almost full\" when this many days are left, or fewer.",
+            "nl": "Zet \"Afvalzak bijna vol\" aan als er nog zoveel dagen over zijn, of minder."
+          },
+          "value": 1,
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "units": {
+            "en": "days",
+            "nl": "dagen"
+          }
+        }
       ]
     },
     {
       "id": "cat",
-      "name": { "en": "Cat", "nl": "Kat" },
+      "name": {
+        "en": "Cat",
+        "nl": "Kat"
+      },
       "class": "other",
-      "platforms": ["local"],
-      "connectivity": ["cloud"],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
       "capabilities": [
         "measure_weight",
-        "cat_visits_today"
+        "cat_visits_today",
+        "cat_visit_log"
       ],
       "settings": [
         {
           "id": "weight_tolerance",
           "type": "number",
-          "label": { "en": "Weight tolerance", "nl": "Gewichtsmarge" },
+          "label": {
+            "en": "Weight tolerance",
+            "nl": "Gewichtsmarge"
+          },
           "hint": {
             "en": "A litter box visit is assigned to the cat whose weight is closest, if the difference is at most this much.",
             "nl": "Een bezoek aan de kattenbak wordt toegewezen aan de kat met het dichtstbijzijnde gewicht, als het verschil hooguit zoveel is."
@@ -186,7 +481,9 @@
           "min": 0.1,
           "max": 3,
           "step": 0.1,
-          "units": { "en": "kg" }
+          "units": {
+            "en": "kg"
+          }
         }
       ],
       "images": {
@@ -195,15 +492,48 @@
         "xlarge": "/drivers/cat/assets/images/xlarge.png"
       },
       "pair": [
-        { "id": "login_email", "navigation": { "next": "login_code" } },
-        { "id": "login_code", "navigation": { "prev": "login_email", "next": "list_devices" } },
-        { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } },
-        { "id": "add_devices", "template": "add_devices" }
+        {
+          "id": "login_email",
+          "navigation": {
+            "next": "login_code"
+          }
+        },
+        {
+          "id": "login_code",
+          "navigation": {
+            "prev": "login_email",
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
       ],
       "repair": [
-        { "id": "login_email", "navigation": { "next": "login_code" } },
-        { "id": "login_code", "navigation": { "prev": "login_email", "next": "repair_done" } },
-        { "id": "repair_done" }
+        {
+          "id": "login_email",
+          "navigation": {
+            "next": "login_code"
+          }
+        },
+        {
+          "id": "login_code",
+          "navigation": {
+            "prev": "login_email",
+            "next": "repair_done"
+          }
+        },
+        {
+          "id": "repair_done"
+        }
       ]
     }
   ],
@@ -211,82 +541,266 @@
     "triggers": [
       {
         "id": "litterbox_status_changed",
-        "title": { "en": "Status changed", "nl": "Status is veranderd" },
+        "title": {
+          "en": "Status changed",
+          "nl": "Status is veranderd"
+        },
         "tokens": [
-          { "name": "status", "type": "string", "title": { "en": "Status", "nl": "Status" }, "example": "cleaning" }
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status"
+            },
+            "example": "cleaning"
+          }
         ],
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "litterbox_cleaning_finished",
-        "title": { "en": "Cleaning finished", "nl": "Schoonmaken is klaar" },
+        "title": {
+          "en": "Cleaning finished",
+          "nl": "Schoonmaken is klaar"
+        },
         "tokens": [
-          { "name": "event", "type": "string", "title": { "en": "Event", "nl": "Gebeurtenis" }, "example": "Automatic cleaning completed" }
+          {
+            "name": "event",
+            "type": "string",
+            "title": {
+              "en": "Event",
+              "nl": "Gebeurtenis"
+            },
+            "example": "Automatic cleaning completed"
+          }
         ],
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "litterbox_cat_visit",
-        "title": { "en": "A cat left the litter box", "nl": "Een kat heeft de kattenbak verlaten" },
+        "title": {
+          "en": "A cat left the litter box",
+          "nl": "Een kat heeft de kattenbak verlaten"
+        },
         "hint": {
           "en": "Can be up to a minute late, because the NOTTY cloud is checked every minute.",
           "nl": "Kan tot een minuut later komen, omdat de NOTTY-cloud elke minuut wordt bekeken."
         },
         "tokens": [
-          { "name": "weight", "type": "number", "title": { "en": "Weight (kg)", "nl": "Gewicht (kg)" }, "example": 4.2 }
+          {
+            "name": "weight",
+            "type": "number",
+            "title": {
+              "en": "Weight (kg)",
+              "nl": "Gewicht (kg)"
+            },
+            "example": 4.2
+          }
         ],
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "litterbox_event",
-        "title": { "en": "New event", "nl": "Nieuwe gebeurtenis" },
+        "title": {
+          "en": "New event",
+          "nl": "Nieuwe gebeurtenis"
+        },
         "tokens": [
-          { "name": "event", "type": "string", "title": { "en": "Event", "nl": "Gebeurtenis" }, "example": "Smoothing litter completed" },
-          { "name": "type", "type": "number", "title": { "en": "Event type", "nl": "Type gebeurtenis" }, "example": 11 }
+          {
+            "name": "event",
+            "type": "string",
+            "title": {
+              "en": "Event",
+              "nl": "Gebeurtenis"
+            },
+            "example": "Smoothing litter completed"
+          },
+          {
+            "name": "type",
+            "type": "number",
+            "title": {
+              "en": "Event type",
+              "nl": "Type gebeurtenis"
+            },
+            "example": 11
+          }
         ],
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "cat_visited",
-        "title": { "en": "Cat used the litter box", "nl": "Kat heeft de kattenbak gebruikt" },
+        "title": {
+          "en": "Cat used the litter box",
+          "nl": "Kat heeft de kattenbak gebruikt"
+        },
         "hint": {
           "en": "The visit is assigned to the cat with the closest weight (see the weight tolerance setting).",
           "nl": "Het bezoek wordt toegewezen aan de kat met het dichtstbijzijnde gewicht (zie de instelling gewichtsmarge)."
         },
         "tokens": [
-          { "name": "visits", "type": "number", "title": { "en": "Visits today", "nl": "Bezoeken vandaag" }, "example": 3 },
-          { "name": "weight", "type": "number", "title": { "en": "Weight (kg)", "nl": "Gewicht (kg)" }, "example": 4.2 }
+          {
+            "name": "visits",
+            "type": "number",
+            "title": {
+              "en": "Visits today",
+              "nl": "Bezoeken vandaag"
+            },
+            "example": 3
+          },
+          {
+            "name": "weight",
+            "type": "number",
+            "title": {
+              "en": "Weight (kg)",
+              "nl": "Gewicht (kg)"
+            },
+            "example": 4.2
+          }
         ],
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=cat" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=cat"
+          }
+        ]
+      },
+      {
+        "id": "litterbox_litter_low",
+        "title": {
+          "en": "Litter is almost empty",
+          "nl": "Grit is bijna op"
+        },
+        "tokens": [
+          {
+            "name": "days",
+            "type": "number",
+            "title": {
+              "en": "Days left",
+              "nl": "Dagen over"
+            },
+            "example": 2
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
+        ]
+      },
+      {
+        "id": "litterbox_bag_full",
+        "title": {
+          "en": "Waste bag is almost full",
+          "nl": "Afvalzak is bijna vol"
+        },
+        "tokens": [
+          {
+            "name": "days",
+            "type": "number",
+            "title": {
+              "en": "Days left",
+              "nl": "Dagen over"
+            },
+            "example": 2
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       }
     ],
     "conditions": [
       {
         "id": "litterbox_status_is",
-        "title": { "en": "Status !{{is|is not}}", "nl": "Status !{{is|is niet}}" },
-        "titleFormatted": { "en": "Status !{{is|is not}} [[status]]", "nl": "Status !{{is|is niet}} [[status]]" },
+        "title": {
+          "en": "Status !{{is|is not}}",
+          "nl": "Status !{{is|is niet}}"
+        },
+        "titleFormatted": {
+          "en": "Status !{{is|is not}} [[status]]",
+          "nl": "Status !{{is|is niet}} [[status]]"
+        },
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" },
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          },
           {
             "type": "dropdown",
             "name": "status",
-            "title": { "en": "Status", "nl": "Status" },
+            "title": {
+              "en": "Status",
+              "nl": "Status"
+            },
             "values": [
-              { "id": "idle", "title": { "en": "Idle", "nl": "Klaar" } },
-              { "id": "cleaning", "title": { "en": "Cleaning", "nl": "Schoonmaken" } },
-              { "id": "emptying", "title": { "en": "Emptying", "nl": "Legen" } },
-              { "id": "leveling", "title": { "en": "Leveling", "nl": "Egaliseren" } },
-              { "id": "other", "title": { "en": "Busy", "nl": "Bezig" } }
+              {
+                "id": "idle",
+                "title": {
+                  "en": "Idle",
+                  "nl": "Klaar"
+                }
+              },
+              {
+                "id": "cleaning",
+                "title": {
+                  "en": "Cleaning",
+                  "nl": "Schoonmaken"
+                }
+              },
+              {
+                "id": "emptying",
+                "title": {
+                  "en": "Emptying",
+                  "nl": "Legen"
+                }
+              },
+              {
+                "id": "leveling",
+                "title": {
+                  "en": "Leveling",
+                  "nl": "Egaliseren"
+                }
+              },
+              {
+                "id": "other",
+                "title": {
+                  "en": "Busy",
+                  "nl": "Bezig"
+                }
+              }
             ]
           }
         ]
@@ -295,39 +809,91 @@
     "actions": [
       {
         "id": "litterbox_clean",
-        "title": { "en": "Start cleaning", "nl": "Start schoonmaken" },
+        "title": {
+          "en": "Start cleaning",
+          "nl": "Start schoonmaken"
+        },
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "litterbox_level",
-        "title": { "en": "Level the litter", "nl": "Egaliseer het grit" },
+        "title": {
+          "en": "Level the litter",
+          "nl": "Egaliseer het grit"
+        },
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "litterbox_empty",
-        "title": { "en": "Empty the litter", "nl": "Leeg het grit" },
+        "title": {
+          "en": "Empty the litter",
+          "nl": "Leeg het grit"
+        },
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" }
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          }
         ]
       },
       {
         "id": "litterbox_set_mode",
-        "title": { "en": "Set mode", "nl": "Zet modus" },
-        "titleFormatted": { "en": "Set mode to [[mode]]", "nl": "Zet modus op [[mode]]" },
+        "title": {
+          "en": "Set mode",
+          "nl": "Zet modus"
+        },
+        "titleFormatted": {
+          "en": "Set mode to [[mode]]",
+          "nl": "Zet modus op [[mode]]"
+        },
         "args": [
-          { "type": "device", "name": "device", "filter": "driver_id=litterbox" },
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=litterbox"
+          },
           {
             "type": "dropdown",
             "name": "mode",
-            "title": { "en": "Mode", "nl": "Modus" },
+            "title": {
+              "en": "Mode",
+              "nl": "Modus"
+            },
             "values": [
-              { "id": "auto", "title": { "en": "Auto", "nl": "Automatisch" } },
-              { "id": "scheduled", "title": { "en": "Scheduled", "nl": "Volgens schema" } },
-              { "id": "soft_stool", "title": { "en": "Soft stool", "nl": "Zachte ontlasting" } }
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Auto",
+                  "nl": "Automatisch"
+                }
+              },
+              {
+                "id": "scheduled",
+                "title": {
+                  "en": "Scheduled",
+                  "nl": "Volgens schema"
+                }
+              },
+              {
+                "id": "soft_stool",
+                "title": {
+                  "en": "Soft stool",
+                  "nl": "Zachte ontlasting"
+                }
+              }
             ]
           }
         ]

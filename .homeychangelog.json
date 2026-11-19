@@ -1,4 +1,8 @@
 {
+  "0.3.0": {
+    "en": "Activity history for the litter box and cats, \"litter almost empty\" and \"waste bag almost full\" alarms and Flow cards, cats recognised by NOTTY get their visits directly, a diagnostics page, and a clear message when an account may not change the mode.",
+    "nl": "Activiteitengeschiedenis voor kattenbak en katten, meldingen en Flow-kaarten voor \"grit bijna op\" en \"afvalzak bijna vol\", katten die NOTTY herkent krijgen hun bezoeken direct, een diagnosepagina, en een duidelijke melding als een account de modus niet mag wijzigen."
+  },
   "0.2.1": {
     "en": "Repair works again. The login screen checks whether your NOTTY login still works, lets you switch accounts, and explains how to use a second NOTTY account so you stay logged in on your phone.",
     "nl": "Repareren werkt weer. Het inlogscherm controleert of je NOTTY-login nog werkt, laat je van account wisselen en legt uit hoe je met een tweede NOTTY-account ook op je telefoon ingelogd blijft."
