@@ -42,24 +42,31 @@ the litter box or create cat profiles. So, in this order:
    cat profiles there.
 4. Then install this app on Homey and add your devices (see below).
 
-### Recommended: a second NOTTY account for Homey
+### Use the owner account in Homey
 
-NOTTY allows only one active login per account. If Homey and your phone use
-the same account, logging in on one logs the other out. To use both at the
-same time, give Homey its own account and share the litter box with it:
+Log in to Homey with the NOTTY account that **owns** the litter box (the one
+you added it with). A litter box shared with another account is **view only**
+for that account: Homey can show its status, but the buttons and the mode
+can't be used (tested).
+
+NOTTY allows only one active login per account, so logging in to Homey logs
+that account out of the NOTTY app on your phone. To keep using the NOTTY app
+as well, use a second account on your phone:
 
 1. In the NOTTY app, log out (Home → Settings → Log out) and register a new
    account with a second email address. A separate alias address works; an
    address with `+` (like `name+homey@…`) has not been tested.
-2. Log out again and log in with your main account.
+2. Log out again and log in with your main (owner) account.
 3. Open the litter box in the NOTTY app and use **Share device** to invite the
    second account.
-4. In Homey, log in with the second account.
+4. Log in to Homey with the main account. Your phone is then logged out of it.
+5. Log in to the NOTTY app on your phone with the second account.
 
-Your phone stays logged in with your main account, and Homey uses the second
-one. The cats of the main account are also available to the second account
-after sharing the litter box (tested). (Sending a different device id at login does not avoid the limit; this
-was tested.)
+Homey then controls the litter box, and the NOTTY app on your phone shows its
+status and your cats. To change settings in the NOTTY app itself, log in
+there with the main account for a moment, and repair the device in Homey
+afterwards. (Sending a different device id at login does not avoid the
+one-login limit; this was tested.)
 
 ## Features
 
@@ -68,7 +75,7 @@ was tested.)
 | Shows | Notes |
 |---|---|
 | Status | Idle, cleaning, emptying, leveling or busy |
-| Mode | Auto, scheduled or soft stool; can be changed by the owner account only (see below) |
+| Mode | Auto, scheduled or soft stool |
 | Litter remaining | Days until the litter needs refilling |
 | Waste bag remaining | Days until the waste bag needs changing |
 | Cleanings today, visits today | As counted by the NOTTY cloud |
@@ -83,9 +90,8 @@ The device's activity history shows when cleaning started and finished,
 when a cat used the litter box, and when the litter or waste bag alarm turned
 on or off.
 
-A shared (non-owner) NOTTY account can use the buttons, but NOTTY does not
-allow it to change the mode. Change the mode in the NOTTY app with the owner
-account; Homey then shows the new mode.
+The buttons and the mode only work when Homey is logged in with the owner
+account. With a shared account the device shows a "view only" warning.
 
 ### Cat
 
@@ -148,8 +154,8 @@ and `homey` if running scripts is disabled.
 
 1. In the Homey app, add a device and choose **Revoloo**.
 2. Choose **Revoloo One litter box**.
-3. Enter the email address of your NOTTY Smart Pet account. NOTTY emails you a
-   one-time code; enter it to log in.
+3. Enter the email address of the NOTTY Smart Pet account that owns the
+   litter box. NOTTY emails you a one-time code; enter it to log in.
 4. Select your litter box.
 5. Add your cats the same way with **Cat**. You don't need to log in again.
 
@@ -157,12 +163,12 @@ and `homey` if running scripts is disabled.
 
 | Problem | Solution |
 |---|---|
-| Device shows "login expired" | You probably logged in to the NOTTY app with the same account, which ends the Homey login. Open the device, choose **Repair** and log in again. To avoid this, use a second NOTTY account for Homey (see above). |
+| Device shows "login expired" | You probably logged in to the NOTTY app with the same account, which ends the Homey login. Open the device, choose **Repair** and log in again. To avoid this, use a second NOTTY account on your phone (see above). |
 | Cat device unavailable | The cat was removed from the NOTTY app. Remove the cat in Homey as well. |
 | Litter box unavailable / offline | The NOTTY cloud reports the box as offline. Check its power and Wi-Fi in the NOTTY app. |
 | Visits go to the wrong cat, or to none | Check the cats' weights and the **weight tolerance** setting of each cat. |
 | Status shows "Busy" | The box reported a status code the app does not know yet. Please open an issue. |
-| Changing the mode says the account may not do that | You are logged in with a shared account. Change the mode in the NOTTY app with the owner account. |
+| Buttons or mode don't work; the device says "view only" | Homey is logged in with an account the litter box is shared with. Open the device, choose **Repair** and log in with the owner account. |
 
 ### Diagnostics
 

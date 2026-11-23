@@ -12,7 +12,7 @@
     "email_required": "Enter your email address first",
     "code_required": "Enter the code from the email",
     "one_login_title": "NOTTY allows one login per account",
-    "one_login_tip": "Logging in here logs that account out of the NOTTY app. Tip: in the NOTTY app, share your litter box with a second account (another email address) and log in with that one here. Then you stay logged in on your phone.",
+    "one_login_tip": "Logging in here logs that account out of the NOTTY app. Use the account that owns the litter box: a shared account can only view it. Tip: share the litter box in the NOTTY app with a second account (another email address) and use that one on your phone.",
     "logged_in_as": "Logged in as",
     "continue": "Continue",
     "other_account": "Use a different account",
@@ -22,7 +22,7 @@
     "offline": "The litter box is offline according to the NOTTY cloud",
     "login_expired": "NOTTY login expired. Use 'Repair' on this device to log in again.",
     "cat_not_found": "This cat was not found in your NOTTY account",
-    "mode_not_allowed": "NOTTY does not allow this account to change the mode. Only the owner of the litter box can do that; change the mode in the NOTTY app."
+    "view_only": "This NOTTY account is shared with you, so it can only view the litter box. Log in to Homey with the account that owns the litter box: open the device in Homey and choose Repair."
   },
   "settings": {
     "title": "Diagnostics",

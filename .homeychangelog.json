@@ -1,4 +1,8 @@
 {
+  "0.3.4": {
+    "en": "Log in to Homey with the NOTTY account that owns the litter box: a shared account can only view it. The device now warns when it is logged in with a shared account.",
+    "nl": "Log in Homey in met het NOTTY-account dat eigenaar is van de kattenbak: een gedeeld account kan hem alleen bekijken. Het apparaat waarschuwt nu als het met een gedeeld account is ingelogd."
+  },
   "0.3.3": {
     "en": "A cat's weight is shown in kilograms (4.2 kg).",
     "nl": "Het gewicht van een kat wordt in kilogram getoond (4,2 kg)."

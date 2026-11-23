@@ -12,7 +12,7 @@
     "email_required": "Vul eerst je e-mailadres in",
     "code_required": "Vul de code uit de mail in",
     "one_login_title": "NOTTY staat één login per account toe",
-    "one_login_tip": "Als je hier inlogt, wordt dat account uitgelogd in de NOTTY-app. Tip: deel in de NOTTY-app je kattenbak met een tweede account (een ander e-mailadres) en log hier met dat account in. Dan blijf je op je telefoon ingelogd.",
+    "one_login_tip": "Als je hier inlogt, wordt dat account uitgelogd in de NOTTY-app. Gebruik het account dat eigenaar is van de kattenbak: een gedeeld account kan hem alleen bekijken. Tip: deel de kattenbak in de NOTTY-app met een tweede account (een ander e-mailadres) en gebruik dat op je telefoon.",
     "logged_in_as": "Ingelogd als",
     "continue": "Doorgaan",
     "other_account": "Ander account gebruiken",
@@ -22,7 +22,7 @@
     "offline": "De kattenbak is offline volgens de NOTTY-cloud",
     "login_expired": "NOTTY-login is verlopen. Gebruik 'Repareren' op dit apparaat om opnieuw in te loggen.",
     "cat_not_found": "Deze kat staat niet (meer) in je NOTTY-account",
-    "mode_not_allowed": "NOTTY staat dit account niet toe de modus te wijzigen. Alleen de eigenaar van de kattenbak kan dat; wijzig de modus in de NOTTY-app."
+    "view_only": "Dit NOTTY-account is met je gedeeld en kan de kattenbak daarom alleen bekijken. Log in Homey in met het account dat eigenaar is van de kattenbak: open het apparaat in Homey en kies Repareren."
   },
   "settings": {
     "title": "Diagnose",

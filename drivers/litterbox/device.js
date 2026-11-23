@@ -24,7 +24,7 @@ const NEW_CAPABILITIES = [
 ];
 
 // NOTTY answers with an error like "no permission" when a shared (non-owner)
-// account tries this.
+// account tries to control the litter box: shared accounts can only view it.
 const PERMISSION_ERROR = /permission|not allowed|forbidden|no auth|权限/i;
 
 function pick(obj, ...keys) {
@@ -109,6 +109,13 @@ class LitterBoxDevice extends Homey.Device {
       this._loggedRawInfo = true;
     }
     this.homey.app.recordDiagnostic(`litterbox ${this.deviceId}`, info);
+
+    // A shared NOTTY account can only view the litter box.
+    if (info.is_owner === false) {
+      await this.setWarning(this.homey.__('device.view_only')).catch(this.error);
+    } else if (info.is_owner === true) {
+      await this.unsetWarning().catch(this.error);
+    }
 
     // status_id: 1 = online, 0 = offline
     if (toNumber(info.status_id) === 0) {
@@ -224,21 +231,26 @@ class LitterBoxDevice extends Homey.Device {
   }
 
   async runOneKey(action) {
-    await this.homey.app.getApi().oneKey(this.deviceId, action);
+    await this._control(`one_key ${action}`, () => this.homey.app.getApi().oneKey(this.deviceId, action));
     this._schedule(5000);
   }
 
   async setLitterMode(mode) {
+    await this._control('set_mode', () => this.homey.app.getApi().setMode(this.deviceId, mode));
+    this._schedule(3000);
+  }
+
+  /** Run a command; explain NOTTY's refusal for shared (view-only) accounts. */
+  async _control(name, command) {
     try {
-      await this.homey.app.getApi().setMode(this.deviceId, mode);
+      await command();
     } catch (err) {
-      this.log('set_mode failed:', err.code, err.message);
+      this.log(`${name} failed:`, err.code, err.message);
       if (PERMISSION_ERROR.test(err.message) || err.auth) {
-        throw new Error(this.homey.__('device.mode_not_allowed'));
+        throw new Error(this.homey.__('device.view_only'));
       }
       throw err;
     }
-    this._schedule(3000);
   }
 
 }

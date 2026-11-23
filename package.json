@@ -1,6 +1,6 @@
 {
   "name": "homey-revoloo",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Homey app for Revoloo smart pet products (One litter box), via the NOTTY Smart Pet cloud",
   "main": "app.js",
   "license": "MIT",
